@@ -37,6 +37,50 @@ ON fare_observations(route_code, departure_date, lead_time_bucket);
 
 CREATE INDEX IF NOT EXISTS idx_fare_provenance 
 ON fare_observations(data_mode, environment);
+
+CREATE TABLE IF NOT EXISTS flight_registry (
+    flight_id TEXT PRIMARY KEY,
+    row_index INTEGER,
+    airline TEXT NOT NULL,
+    flight_number TEXT NOT NULL,
+    source_city TEXT NOT NULL,
+    origin_code TEXT NOT NULL,
+    destination_city TEXT NOT NULL,
+    destination_code TEXT NOT NULL,
+    route_code TEXT NOT NULL,
+    departure_time TEXT NOT NULL,
+    stops TEXT NOT NULL,
+    arrival_time TEXT NOT NULL,
+    class_type TEXT NOT NULL,
+    duration_hours REAL NOT NULL,
+    data_mode TEXT NOT NULL,
+    environment TEXT NOT NULL,
+    source_type TEXT NOT NULL,
+    CHECK (data_mode IN ('official', 'historical', 'external_connector', 'demo_simulation')),
+    CHECK (environment IN ('production', 'sandbox', 'offline')),
+    CHECK (duration_hours >= 0)
+);
+
+CREATE INDEX IF NOT EXISTS idx_reg_route ON flight_registry(route_code);
+CREATE INDEX IF NOT EXISTS idx_reg_airline ON flight_registry(airline);
+CREATE INDEX IF NOT EXISTS idx_reg_origin ON flight_registry(origin_code);
+CREATE INDEX IF NOT EXISTS idx_reg_mode ON flight_registry(data_mode, source_type);
+
+-- Route Network Summary View (aggregating observed records, not assuming daily frequency)
+CREATE VIEW IF NOT EXISTS v_route_network AS
+SELECT 
+    route_code,
+    origin_code,
+    destination_code,
+    source_city,
+    destination_city,
+    COUNT(*) AS observed_flight_records,
+    COUNT(DISTINCT airline) AS active_airlines_count,
+    ROUND(AVG(duration_hours), 2) AS avg_duration_hours,
+    ROUND(MIN(duration_hours), 2) AS min_duration_hours,
+    SUM(CASE WHEN LOWER(stops) = 'zero' THEN 1 ELSE 0 END) AS non_stop_records
+FROM flight_registry
+GROUP BY route_code;
 """
 
 def get_connection(db_path=DB_PATH) -> sqlite3.Connection:
@@ -65,7 +109,8 @@ def get_db_cursor(db_path=DB_PATH) -> Generator[sqlite3.Cursor, None, None]:
         conn.close()
 
 def init_db(db_path=DB_PATH) -> None:
-    """Initializes the database tables and indices if not already present."""
+    """Initializes database tables, indices, and views if not already present."""
     with get_db_cursor(db_path) as cursor:
         cursor.executescript(DDL_FARE_OBSERVATIONS)
     logger.info(f"Database initialized successfully at {db_path} with WAL mode.")
+

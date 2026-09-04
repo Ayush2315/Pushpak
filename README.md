@@ -72,8 +72,8 @@ Upon execution, the pipeline:
 | Milestone | Scope / Module | Status | Description |
 | :--- | :--- | :---: | :--- |
 | **M0A** | **Data Acquisition Foundation** | **COMPLETE** | Pluggable connectors, Pydantic schema, SQLite WAL persistence, provenance audit trail. |
-| **M0B** | **Flight Registry & Network** | *Next* | Parsing 47k domestic records from `flightsdata.pdf` into route network registry. |
-| **M1** | **Backend API Layer** | *Planned* | FastAPI `/api/v1/` endpoints for health, routes, observations, and swagger docs. |
+| **M0B** | **Flight Registry & Network** | **COMPLETE** | Ingested domestic flight registry (50,000 active sample of 300,153 records in `flightsdata.pdf`), route network view, carrier analytics. |
+| **M1** | **Backend API Layer** | *Next* | FastAPI `/api/v1/` endpoints for health, routes, observations, and swagger docs. |
 | **M2** | **Government Navigation Shell** | *Planned* | Two-tier layout: Top navigation controlling dynamic, context-aware sidebars. |
 | **M3** | **PUSHPAK Index Engine** | *Planned* | Jevons Geometric Mean calculation, Core Index, and Z-score spike alerts. |
 | **M4** | **Market Intelligence** | *Planned* | Lead-time yield curves, airline price dispersion, and monopoly index. |

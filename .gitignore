@@ -40,6 +40,11 @@ backend/data/*.db-wal
 backend/data/*.db-shm
 *.log
 
+# Large binary datasets (e.g. 83MB flightsdata.pdf - seed fallback committed instead)
+*.pdf
+backend/data/*.pdf
+
+
 # Testing cache
 .pytest_cache/
 .coverage

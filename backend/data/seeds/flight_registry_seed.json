@@ -1,0 +1,53 @@
+[
+  {"airline": "SpiceJet", "flight": "SG-8709", "source_city": "Delhi", "departure_time": "Early_Morning", "stops": "zero", "arrival_time": "Morning", "destination_city": "Mumbai", "class": "Economy", "duration": 2.17},
+  {"airline": "Indigo", "flight": "6E-2041", "source_city": "Delhi", "departure_time": "Morning", "stops": "zero", "arrival_time": "Afternoon", "destination_city": "Mumbai", "class": "Economy", "duration": 2.25},
+  {"airline": "Air_India", "flight": "AI-805", "source_city": "Delhi", "departure_time": "Afternoon", "stops": "zero", "arrival_time": "Evening", "destination_city": "Mumbai", "class": "Economy", "duration": 2.33},
+  {"airline": "Air_India", "flight": "AI-805", "source_city": "Delhi", "departure_time": "Afternoon", "stops": "zero", "arrival_time": "Evening", "destination_city": "Mumbai", "class": "Business", "duration": 2.33},
+  {"airline": "Vistara", "flight": "UK-995", "source_city": "Delhi", "departure_time": "Evening", "stops": "zero", "arrival_time": "Night", "destination_city": "Mumbai", "class": "Economy", "duration": 2.15},
+  {"airline": "Vistara", "flight": "UK-995", "source_city": "Delhi", "departure_time": "Evening", "stops": "zero", "arrival_time": "Night", "destination_city": "Mumbai", "class": "Business", "duration": 2.15},
+  {"airline": "Indigo", "flight": "6E-5012", "source_city": "Delhi", "departure_time": "Night", "stops": "zero", "arrival_time": "Late_Night", "destination_city": "Mumbai", "class": "Economy", "duration": 2.20},
+  {"airline": "AirAsia", "flight": "I5-764", "source_city": "Delhi", "departure_time": "Morning", "stops": "one", "arrival_time": "Evening", "destination_city": "Mumbai", "class": "Economy", "duration": 6.75},
+  {"airline": "GO_FIRST", "flight": "G8-336", "source_city": "Delhi", "departure_time": "Early_Morning", "stops": "zero", "arrival_time": "Morning", "destination_city": "Mumbai", "class": "Economy", "duration": 2.10},
+
+  {"airline": "Indigo", "flight": "6E-2134", "source_city": "Delhi", "departure_time": "Early_Morning", "stops": "zero", "arrival_time": "Morning", "destination_city": "Bangalore", "class": "Economy", "duration": 2.75},
+  {"airline": "Air_India", "flight": "AI-506", "source_city": "Delhi", "departure_time": "Morning", "stops": "zero", "arrival_time": "Afternoon", "destination_city": "Bangalore", "class": "Economy", "duration": 2.80},
+  {"airline": "Air_India", "flight": "AI-506", "source_city": "Delhi", "departure_time": "Morning", "stops": "zero", "arrival_time": "Afternoon", "destination_city": "Bangalore", "class": "Business", "duration": 2.80},
+  {"airline": "Vistara", "flight": "UK-817", "source_city": "Delhi", "departure_time": "Afternoon", "stops": "zero", "arrival_time": "Evening", "destination_city": "Bangalore", "class": "Economy", "duration": 2.70},
+  {"airline": "Vistara", "flight": "UK-817", "source_city": "Delhi", "departure_time": "Afternoon", "stops": "zero", "arrival_time": "Evening", "destination_city": "Bangalore", "class": "Business", "duration": 2.70},
+  {"airline": "SpiceJet", "flight": "SG-8184", "source_city": "Delhi", "departure_time": "Evening", "stops": "zero", "arrival_time": "Night", "destination_city": "Bangalore", "class": "Economy", "duration": 2.85},
+  {"airline": "AirAsia", "flight": "I5-982", "source_city": "Delhi", "departure_time": "Night", "stops": "one", "arrival_time": "Morning", "destination_city": "Bangalore", "class": "Economy", "duration": 8.50},
+
+  {"airline": "Indigo", "flight": "6E-451", "source_city": "Mumbai", "departure_time": "Early_Morning", "stops": "zero", "arrival_time": "Morning", "destination_city": "Bangalore", "class": "Economy", "duration": 1.75},
+  {"airline": "SpiceJet", "flight": "SG-437", "source_city": "Mumbai", "departure_time": "Morning", "stops": "zero", "arrival_time": "Afternoon", "destination_city": "Bangalore", "class": "Economy", "duration": 1.80},
+  {"airline": "Air_India", "flight": "AI-639", "source_city": "Mumbai", "departure_time": "Afternoon", "stops": "zero", "arrival_time": "Evening", "destination_city": "Bangalore", "class": "Economy", "duration": 1.85},
+  {"airline": "Air_India", "flight": "AI-639", "source_city": "Mumbai", "departure_time": "Afternoon", "stops": "zero", "arrival_time": "Evening", "destination_city": "Bangalore", "class": "Business", "duration": 1.85},
+  {"airline": "Vistara", "flight": "UK-851", "source_city": "Mumbai", "departure_time": "Evening", "stops": "zero", "arrival_time": "Night", "destination_city": "Bangalore", "class": "Economy", "duration": 1.70},
+  {"airline": "Vistara", "flight": "UK-851", "source_city": "Mumbai", "departure_time": "Evening", "stops": "zero", "arrival_time": "Night", "destination_city": "Bangalore", "class": "Business", "duration": 1.70},
+  {"airline": "GO_FIRST", "flight": "G8-317", "source_city": "Mumbai", "departure_time": "Night", "stops": "zero", "arrival_time": "Late_Night", "destination_city": "Bangalore", "class": "Economy", "duration": 1.75},
+
+  {"airline": "Indigo", "flight": "6E-205", "source_city": "Delhi", "departure_time": "Morning", "stops": "zero", "arrival_time": "Afternoon", "destination_city": "Kolkata", "class": "Economy", "duration": 2.15},
+  {"airline": "Air_India", "flight": "AI-701", "source_city": "Delhi", "departure_time": "Afternoon", "stops": "zero", "arrival_time": "Evening", "destination_city": "Kolkata", "class": "Economy", "duration": 2.20},
+  {"airline": "Vistara", "flight": "UK-707", "source_city": "Delhi", "departure_time": "Evening", "stops": "zero", "arrival_time": "Night", "destination_city": "Kolkata", "class": "Economy", "duration": 2.10},
+  {"airline": "SpiceJet", "flight": "SG-268", "source_city": "Delhi", "departure_time": "Night", "stops": "one", "arrival_time": "Morning", "destination_city": "Kolkata", "class": "Economy", "duration": 7.40},
+
+  {"airline": "Indigo", "flight": "6E-538", "source_city": "Delhi", "departure_time": "Early_Morning", "stops": "zero", "arrival_time": "Morning", "destination_city": "Hyderabad", "class": "Economy", "duration": 2.25},
+  {"airline": "Air_India", "flight": "AI-542", "source_city": "Delhi", "departure_time": "Afternoon", "stops": "zero", "arrival_time": "Evening", "destination_city": "Hyderabad", "class": "Economy", "duration": 2.30},
+  {"airline": "Vistara", "flight": "UK-879", "source_city": "Delhi", "departure_time": "Evening", "stops": "zero", "arrival_time": "Night", "destination_city": "Hyderabad", "class": "Economy", "duration": 2.15},
+
+  {"airline": "Indigo", "flight": "6E-218", "source_city": "Delhi", "departure_time": "Morning", "stops": "zero", "arrival_time": "Afternoon", "destination_city": "Chennai", "class": "Economy", "duration": 2.80},
+  {"airline": "Air_India", "flight": "AI-440", "source_city": "Delhi", "departure_time": "Evening", "stops": "zero", "arrival_time": "Night", "destination_city": "Chennai", "class": "Economy", "duration": 2.85},
+  {"airline": "Vistara", "flight": "UK-835", "source_city": "Delhi", "departure_time": "Afternoon", "stops": "zero", "arrival_time": "Evening", "destination_city": "Chennai", "class": "Economy", "duration": 2.75},
+
+  {"airline": "Indigo", "flight": "6E-5301", "source_city": "Mumbai", "departure_time": "Early_Morning", "stops": "zero", "arrival_time": "Morning", "destination_city": "Delhi", "class": "Economy", "duration": 2.15},
+  {"airline": "Air_India", "flight": "AI-806", "source_city": "Mumbai", "departure_time": "Morning", "stops": "zero", "arrival_time": "Afternoon", "destination_city": "Delhi", "class": "Economy", "duration": 2.25},
+  {"airline": "Vistara", "flight": "UK-996", "source_city": "Mumbai", "departure_time": "Evening", "stops": "zero", "arrival_time": "Night", "destination_city": "Delhi", "class": "Economy", "duration": 2.20},
+  {"airline": "SpiceJet", "flight": "SG-8710", "source_city": "Mumbai", "departure_time": "Night", "stops": "zero", "arrival_time": "Late_Night", "destination_city": "Delhi", "class": "Economy", "duration": 2.10},
+
+  {"airline": "Indigo", "flight": "6E-452", "source_city": "Bangalore", "departure_time": "Morning", "stops": "zero", "arrival_time": "Afternoon", "destination_city": "Mumbai", "class": "Economy", "duration": 1.75},
+  {"airline": "Vistara", "flight": "UK-852", "source_city": "Bangalore", "departure_time": "Afternoon", "stops": "zero", "arrival_time": "Evening", "destination_city": "Mumbai", "class": "Economy", "duration": 1.70},
+  {"airline": "Air_India", "flight": "AI-640", "source_city": "Bangalore", "departure_time": "Evening", "stops": "zero", "arrival_time": "Night", "destination_city": "Mumbai", "class": "Economy", "duration": 1.80},
+
+  {"airline": "Indigo", "flight": "6E-2135", "source_city": "Bangalore", "departure_time": "Morning", "stops": "zero", "arrival_time": "Afternoon", "destination_city": "Delhi", "class": "Economy", "duration": 2.70},
+  {"airline": "Vistara", "flight": "UK-818", "source_city": "Bangalore", "departure_time": "Afternoon", "stops": "zero", "arrival_time": "Evening", "destination_city": "Delhi", "class": "Economy", "duration": 2.75},
+  {"airline": "Air_India", "flight": "AI-507", "source_city": "Bangalore", "departure_time": "Night", "stops": "zero", "arrival_time": "Late_Night", "destination_city": "Delhi", "class": "Economy", "duration": 2.80}
+]
