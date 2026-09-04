@@ -42,18 +42,27 @@ platform win32 -- Python 3.13.5, pytest-9.1.1, pluggy-1.6.0
 configfile: pytest.ini
 testpaths: backend/tests
 plugins: anyio-4.15.0
-collected 7 items
+collected 10 items
 
-backend/tests/test_ingestion.py::test_mock_connector_offline PASSED      [ 14%]
-backend/tests/test_ingestion.py::test_sandbox_connector_graceful_skip PASSED [ 28%]
-backend/tests/test_ingestion.py::test_pipeline_execution_and_sqlite_wal PASSED [ 42%]
-backend/tests/test_schema.py::test_valid_fare_observation PASSED         [ 57%]
-backend/tests/test_schema.py::test_invalid_data_mode_rejected PASSED     [ 71%]
-backend/tests/test_schema.py::test_negative_base_fare_rejected PASSED    [ 85%]
+backend/tests/test_ingestion.py::test_mock_connector_offline PASSED      [ 10%]
+backend/tests/test_ingestion.py::test_sandbox_connector_graceful_skip PASSED [ 20%]
+backend/tests/test_ingestion.py::test_pipeline_execution_and_sqlite_wal PASSED [ 30%]
+backend/tests/test_ingestion.py::test_mock_connector_determinism PASSED  [ 40%]
+backend/tests/test_ingestion.py::test_pipeline_idempotency_no_duplicates PASSED [ 50%]
+backend/tests/test_ingestion.py::test_pipeline_reset_functionality PASSED [ 60%]
+backend/tests/test_schema.py::test_valid_fare_observation PASSED         [ 70%]
+backend/tests/test_schema.py::test_invalid_data_mode_rejected PASSED     [ 80%]
+backend/tests/test_schema.py::test_negative_base_fare_rejected PASSED    [ 90%]
 backend/tests/test_schema.py::test_invalid_route_code_format_rejected PASSED [100%]
 
-============================== 7 passed in 0.40s ==============================
+============================= 10 passed in 0.36s ==============================
 ```
+
+### Idempotency & Duplicate Protection Verification
+- **First Run**: 135 observations ingested → 135 total in SQLite.
+- **Second Run**: 135 observations ingested → **135 total in SQLite** (0 duplicates created).
+- **Mechanism**: Primary key `observation_id` is deterministically computed. SQLite executes `INSERT OR REPLACE` (upsert behavior).
+- **Explicit Reset**: `--reset` flag supported to cleanly purge and re-initialize demo data: `python -m backend.ingestion.pipeline --reset`.
 
 ### Pipeline Execution Output
 ```

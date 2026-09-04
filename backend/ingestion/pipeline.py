@@ -36,11 +36,13 @@ SCHEDULE_SLOTS = [
 def run_ingestion_pipeline(
     base_date: datetime = None,
     routes: List[str] = None,
-    include_sandbox: bool = True
+    include_sandbox: bool = True,
+    reset_demo: bool = False
 ) -> Dict[str, Any]:
     """
     Orchestrates the Milestone 0A airfare data ingestion pipeline.
     Ensures 100+ deterministic observations with strict Pydantic validation and SQLite persistence.
+    Idempotent: Re-running on the same base date updates records in-place without creating duplicates.
     """
     if base_date is None:
         base_date = datetime.now(timezone.utc)
@@ -49,6 +51,11 @@ def run_ingestion_pipeline(
 
     logger.info("Initializing PUSHPAK Database and Tables...")
     init_db()
+
+    if reset_demo:
+        logger.info("Resetting demo observations as requested (--reset)...")
+        with get_db_cursor() as cursor:
+            cursor.execute("DELETE FROM fare_observations WHERE data_mode = 'demo_simulation';")
 
     # Instantiate connectors
     mock_connector = MockDemoConnector()
@@ -153,8 +160,16 @@ def run_ingestion_pipeline(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="PUSHPAK Airfare Ingestion Pipeline Runner")
     parser.add_argument("--routes", type=str, help="Comma-separated routes (default: DEL-BOM,DEL-BLR,BOM-BLR)")
+    parser.add_argument("--date", type=str, help="Reference base date in YYYY-MM-DD (default: today UTC)")
+    parser.add_argument("--reset", action="store_true", help="Reset/wipe demo observations before ingestion")
     parser.add_argument("--skip-sandbox", action="store_true", help="Skip optional sandbox connector")
     args = parser.parse_args()
 
     route_list = args.routes.split(",") if args.routes else None
-    run_ingestion_pipeline(routes=route_list, include_sandbox=not args.skip_sandbox)
+    base_dt = datetime.strptime(args.date, "%Y-%m-%d").replace(tzinfo=timezone.utc) if args.date else None
+    run_ingestion_pipeline(
+        base_date=base_dt,
+        routes=route_list,
+        include_sandbox=not args.skip_sandbox,
+        reset_demo=args.reset
+    )

@@ -73,3 +73,57 @@ def test_pipeline_execution_and_sqlite_wal(tmp_path):
     assert set(distinct_buckets) == {"T+1", "T+7", "T+15", "T+30", "T+45"}
 
     conn.close()
+
+def test_mock_connector_determinism():
+    """Confirms MockDemoConnector generates 100% deterministic, predictable results for identical inputs."""
+    connector = MockDemoConnector()
+    run1 = connector.fetch_fares("DEL", "BOM", "2026-09-12", "T+7", 7)
+    run2 = connector.fetch_fares("DEL", "BOM", "2026-09-12", "T+7", 7)
+
+    assert run1 == run2, "MockDemoConnector output must be identical across runs for identical inputs"
+    assert len(run1) == 3
+    for r1, r2 in zip(run1, run2):
+        assert r1["observation_id"] == r2["observation_id"]
+        assert r1["base_fare"] == r2["base_fare"]
+        assert r1["total_fare"] == r2["total_fare"]
+        assert r1["source_hash"] == r2["source_hash"]
+
+def test_pipeline_idempotency_no_duplicates():
+    """Confirms running the pipeline multiple times does not produce duplicate observations."""
+    from datetime import datetime, timezone
+    fixed_date = datetime(2026, 9, 5, tzinfo=timezone.utc)
+
+    # First run
+    summary1 = run_ingestion_pipeline(base_date=fixed_date, include_sandbox=False)
+    count1 = summary1["total_records_in_db"]
+
+    # Second run with identical base date
+    summary2 = run_ingestion_pipeline(base_date=fixed_date, include_sandbox=False)
+    count2 = summary2["total_records_in_db"]
+
+    assert count1 == count2, f"Idempotency violated: Run 1 had {count1} records, but Run 2 had {count2} records"
+
+    # Confirm no duplicate observation_id values in SQLite
+    conn = get_connection()
+    cursor = conn.cursor()
+    dup_check = cursor.execute("""
+        SELECT observation_id, COUNT(*) 
+        FROM fare_observations 
+        GROUP BY observation_id 
+        HAVING COUNT(*) > 1;
+    """).fetchall()
+    conn.close()
+
+    assert len(dup_check) == 0, f"Found duplicate observation IDs: {dup_check}"
+
+def test_pipeline_reset_functionality():
+    """Confirms pipeline reset flag cleanly purges demo data and repopulates."""
+    from datetime import datetime, timezone
+    fixed_date = datetime(2026, 9, 5, tzinfo=timezone.utc)
+
+    # Run with reset
+    summary = run_ingestion_pipeline(base_date=fixed_date, include_sandbox=False, reset_demo=True)
+    assert summary["status"] == "SUCCESS"
+    assert summary["records_ingested_this_run"] == 135
+    assert summary["total_records_in_db"] == 135
+
