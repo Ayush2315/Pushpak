@@ -73,6 +73,14 @@ Access the interactive API documentation:
 - **ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
 - **Health Check**: [http://localhost:8000/health](http://localhost:8000/health)
 
+### 6. Launch the React + Vite Frontend Dashboard (Milestone 5)
+```bash
+cd frontend
+npm install
+npm run dev
+```
+Open [http://localhost:5173](http://localhost:5173) to access the interactive dashboard.
+
 ---
 
 ## 🗺️ Milestone Roadmap
@@ -84,10 +92,10 @@ Access the interactive API documentation:
 | **M1** | **Backend API Layer** | **COMPLETE** | FastAPI `/api/v1/` endpoints for health, flights, routes, analytics, fares, provenance, CORS, and Swagger docs. |
 | **M2** | **Intelligence & Fare Analytics** | **COMPLETE** | Volatility classification ($CV$), lead-time yield curves ($T+1$ to $T+45$), inter-carrier comparison, deterministic insights. |
 | **M3** | **Decision Support & Policy Intelligence** | **COMPLETE** | Quantitative priority classification (`HIGH_ATTENTION`, `MONITOR`, `LOW_ATTENTION`), numbers-traceable policy flags, macro network overview. |
-| **M4** | **Government Navigation Shell & UI** | *Next* | Two-tier layout: Top navigation controlling dynamic, context-aware sidebars. |
-| **M5** | **PUSHPAK Index Engine** | *Planned* | Jevons Geometric Mean calculation, Core Index, and Z-score spike alerts. |
+| **M4** | **PUSHPAK Price Index Engine** | **COMPLETE** | PUSHPAK Headline Index, PUSHPAK Core Index, Walk-Up Surge Spread, corridor price-relatives, Laspeyres weighting, CPI alignment. |
+| **M5** | **Frontend Dashboard & Decision Interface** | **COMPLETE** | React + Vite dashboard: 7 core modules, bilingual English ↔ Hindi toggle, Recharts visualizations, zero fake live data claims. |
 | **M6** | **Policy Lab & CPI Sandbox** | *Planned* | Interactive MoSPI CPI Transport sensitivity simulator. |
-| **M7** | **Jury Readiness & Localization** | *Planned* | Bilingual English ↔ Hindi support and offline presentation fail-safes. |
+| **M7** | **Jury Readiness & Production Polish** | *Planned* | Final jury demonstration script and offline deployment bundle. |
 
 ---
 
@@ -98,13 +106,13 @@ Access the interactive API documentation:
 - [API Developer Guide](docs/API_GUIDE.md)
 - [Fare Intelligence & Volatility Engine](docs/FARE_INTELLIGENCE.md)
 - [Policy Intelligence & Decision Support](docs/POLICY_INTELLIGENCE.md)
-- [Data Strategy & Taxonomy](docs/DATA_STRATEGY.md)
-- [Data Provenance & Audit Trail](docs/DATA_PROVENANCE.md)
-- [Flight Registry Architecture](docs/FLIGHT_REGISTRY.md)
-- [Team Learning & Defense Guide](docs/TEAM_LEARNING_GUIDE.md)
-- [Jury Preparation & FAQ](docs/JURY_PREPARATION.md)
+- [Airfare Price Index Engine Architecture](docs/PRICE_INDEX.md)
 - [Milestone 0A Completion Report](docs/milestones/MILESTONE_00A.md)
 - [Milestone 0B Completion Report](docs/milestones/MILESTONE_00B.md)
-- [Milestone 1 Completion Report](docs/milestones/MILESTONE_01.md)
-- [Milestone 2 Completion Report](docs/milestones/MILESTONE_02.md)
-- [Milestone 3 Completion Report](docs/milestones/MILESTONE_03.md)
+- [Milestone 01 Completion Report](docs/milestones/MILESTONE_01.md)
+- [Milestone 02 Completion Report](docs/milestones/MILESTONE_02.md)
+- [Milestone 03 Completion Report](docs/milestones/MILESTONE_03.md)
+- [Milestone 04 Completion Report](docs/milestones/MILESTONE_04.md)
+- [Milestone 05 Completion Report](docs/milestones/MILESTONE_05.md)
+- [Team Learning Guide](docs/TEAM_LEARNING_GUIDE.md)
+- [Jury Preparation & Defense Guide](docs/JURY_PREPARATION.md)

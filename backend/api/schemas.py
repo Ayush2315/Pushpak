@@ -252,3 +252,68 @@ class PolicyFlagsResponse(BaseModel):
     filters_applied: Dict[str, Any]
     flags: List[PolicyFlag]
 
+# ====================================================================
+# MILESTONE 4: PUSHPAK PRICE INDEX ENGINE SCHEMAS
+# ====================================================================
+
+class RouteIndexContribution(BaseModel):
+    route_code: str = Field(..., description="IATA route corridor (e.g. DEL-BOM)")
+    source_city: str = Field(..., description="Origin departure city")
+    destination_city: str = Field(..., description="Destination arrival city")
+    weight: float = Field(..., description="Analytical route weight (0.0 to 1.0)")
+    weight_pct: float = Field(..., description="Weight percentage in basket")
+    base_fare: float = Field(..., description="Baseline reference fare (INR) at T+45")
+    current_fare: float = Field(..., description="Current aggregated fare (INR) across measured horizons")
+    price_relative: float = Field(..., description="Price relative ratio (current_fare / base_fare)")
+    route_index: float = Field(..., description="Corridor price index (price_relative * 100)")
+    weighted_contribution: float = Field(..., description="Contribution to composite index (weight * route_index)")
+    observation_count: int = Field(..., description="Underlying micro-fare observation count")
+
+class PriceIndexResponse(BaseModel):
+    index_name: str = Field(..., description="Full descriptive name of the index")
+    index_code: str = Field(..., description="PUSHPAK_HEADLINE or PUSHPAK_CORE")
+    index_value: float = Field(..., description="Calculated aggregate index value (Base = 100.00)")
+    base_value: float = Field(default=100.0, description="Reference baseline index value")
+    movement: float = Field(..., description="Absolute index movement (index_value - base_value)")
+    percentage_movement: float = Field(..., description="Percentage change vs base period")
+    route_count: int = Field(..., description="Number of representative routes in basket")
+    observation_count: int = Field(..., description="Total underlying fare observations evaluated")
+    weighting_method: str = Field(..., description="observed_records (corridor volume) or equal_weights")
+    route_contributions: List[RouteIndexContribution]
+    methodology_note: str = Field(..., description="Explainable index aggregation methodology")
+    excluded_factors: Optional[List[str]] = Field(None, description="Factors or horizons excluded (for Core index)")
+    data_mode: str = Field(default="demo_simulation")
+    environment: str = Field(default="offline")
+    disclaimer: str = Field(
+        default="PUSHPAK Prototype Analytical Index. Simulation-based analytical output. Not an official Government of India CPI series.",
+        description="Statutory non-regulatory notice"
+    )
+
+class PriceIndexSummaryResponse(BaseModel):
+    headline_index: float = Field(..., description="PUSHPAK Headline Index (all booking horizons T+1 to T+45)")
+    core_index: float = Field(..., description="PUSHPAK Core Index (structural horizons T+15, T+30, T+45)")
+    surge_spread_points: float = Field(..., description="Spread in index points (Headline - Core)")
+    surge_spread_pct: float = Field(..., description="Walk-up surge markup percentage ((Headline - Core) / Core) * 100")
+    representative_routes_count: int
+    route_basket: List[str]
+    weighting_method: str
+    analytical_interpretation: str
+    provenance: Dict[str, Any]
+    disclaimer: str = Field(
+        default="PUSHPAK Prototype Analytical Index. Simulation-based analytical output. Not an official Government of India CPI series.",
+        description="Statutory non-regulatory notice"
+    )
+
+class PriceIndexMethodologyResponse(BaseModel):
+    index_family: str = "PUSHPAK Civil Aviation Price Index Suite"
+    base_convention: str
+    headline_methodology: str
+    core_methodology: str
+    mathematical_formula: str
+    weighting_strategy: str
+    route_basket_selection: str
+    data_requirements: str
+    limitations: List[str]
+    cpi_alignment_explanation: str
+    statutory_disclaimer: str
+

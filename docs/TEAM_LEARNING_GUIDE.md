@@ -60,10 +60,12 @@ This guide prepares the entire SIH team for tomorrow's presentation. Regardless 
 ### Topic 7: Fare Intelligence & Explainable Volatility
 - **Basic (All)**: What is data aggregation? Instead of looking at 135 individual numbers, we group them by route, airline, and booking window to find averages, minimums, and maximums.
 - **Intermediate**: What is Standard Deviation and Coefficient of Variation ($CV$)? Standard deviation measures how spread out fares are from the average. $CV$ divides standard deviation by the mean, giving a percentage. This lets us compare a ₹4,000 route and a ₹10,000 route fairly.
-- **Advanced**: Why deterministic rule-based intelligence over machine learning? National statistical and regulatory systems require 100% auditability, explainability, and zero hallucination risk. Rules evaluate mathematical bounds directly and produce plain-English insights with explicit provenance tags.
+### Topic 8: Airfare Price Index Suite (Headline vs Core)
+- **Basic (All)**: What is an index? It sets a starting baseline at 100.00 and tracks whether prices went up or down. If the index is 133.79, it means airfares are on average 33.79% higher than the baseline.
+- **Intermediate**: Difference between Headline and Core Index: Headline measures all flights including urgent last-minute walk-up tickets (T+1). Core Index filters out short-term walk-up volatility (T+1 and T+7) to reveal underlying structural capacity pricing, exactly like Core CPI excludes volatile food and fuel.
+- **Advanced**: How is the Walk-Up Surge Spread calculated? Subtract Core from Headline (133.79 - 112.94 = +20.85 points). This empirically isolates the exact consumer price penalty caused by last-minute urgency. Weights are derived from corridor flight volume and sum strictly to 1.0000.
 
 ---
-
 
 ## 3. Recommended Study Priority Before Tomorrow
 1. **First 30 minutes**: Master Topic 1 (Data Honesty) and Topic 2 (Ethics). This is the #1 question judges ask.

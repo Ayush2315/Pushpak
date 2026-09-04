@@ -1,0 +1,537 @@
+/**
+ * Comprehensive Knowledge Center & FAQ Repository for Project PUSHPAK.
+ * Covers all 7 analytical categories with in-depth, understandable answers
+ * designed for evaluators, statisticians, civil aviation authorities, and citizens.
+ */
+
+export const FAQ_CATEGORIES = [
+  { id: 'all', name: 'All Categories', nameHi: 'सभी विषय' },
+  { id: 'basics', name: 'About PUSHPAK', nameHi: 'पुष्पक के बारे में' },
+  { id: 'priceIndex', name: 'Price Index', nameHi: 'मूल्य सूचकांक' },
+  { id: 'fareIntelligence', name: 'Airfare Intelligence', nameHi: 'किराया आसूचना' },
+  { id: 'policyIntelligence', name: 'Policy Intelligence', nameHi: 'नीति आसूचना' },
+  { id: 'routeNetwork', name: 'Route Network', nameHi: 'मार्ग संजाल' },
+  { id: 'transparency', name: 'Data Transparency & Provenance', nameHi: 'डेटा पारदर्शिता एवं उद्गम' },
+  { id: 'methodology', name: 'Methodology & CPI', nameHi: 'कार्यप्रणाली एवं CPI' },
+];
+
+export const knowledgeBase = [
+  // =========================================================================
+  // CATEGORY A: ABOUT PUSHPAK
+  // =========================================================================
+  {
+    id: 'what-is-pushpak',
+    category: 'basics',
+    questionEn: 'What is Project PUSHPAK?',
+    questionHi: 'प्रोजेक्ट पुष्पक क्या है?',
+    simpleEn: 'PUSHPAK is a Civil Aviation Price Intelligence Platform designed to monitor domestic airfare movements and calculate a transparent, high-frequency Airfare Price Index for India.',
+    simpleHi: 'पुष्पक एक नागर विमानन मूल्य आसूचना मंच है जिसे भारत में घरेलू हवाई किराए की गतिविधियों की निगरानी और पारदर्शी, उच्च-आवृत्ति मूल्य सूचकांक की गणना के लिए तैयार किया गया है।',
+    whyMattersEn: 'Official consumer price statistics traditionally sample airfares at infrequent monthly intervals, lagging behind the rapid changes caused by dynamic airline revenue management algorithms. PUSHPAK bridges this gap with deterministic, daily algorithmic indexing.',
+    whyMattersHi: 'आधिकारिक उपभोक्ता मूल्य आंकड़े पारंपरिक रूप से मासिक अंतरालों पर लिए जाते हैं, जिससे वे एयरलाइन के गतिशील मूल्य निर्धारण के तीव्र परिवर्तनों से पिछड़ जाते हैं। पुष्पक नियतात्मक, दैनिक एल्गोरिदम अनुक्रमण के माध्यम से इस अंतर को समाप्त करता है।',
+    howCalculatedEn: 'It continuously monitors airfare observations across 5 advance booking horizons (T+1 to T+45) across verified trunk corridors, computing Laspeyres-type Headline and Core price relatives.',
+    howCalculatedHi: 'यह सत्यापित ट्रंक गलियारों में 5 अग्रिम बुकिंग अवधियों (T+1 से T+45) में हवाई किराए के अवलोकनों की निरंतर निगरानी करता है और लास्पेरेस-प्रकार के हेडलाइन और कोर मूल्य सापेक्षों की गणना करता है।',
+    exampleEn: 'An index reading of 133.79 reveals that domestic passenger airfares across the representative basket are currently 33.79% above the defined baseline reference.',
+    exampleHi: '133.79 का सूचकांक दर्शाता है कि प्रतिनिधि टोकरी में घरेलू हवाई किराया वर्तमान में बेसलाइन संदर्भ से 33.79% अधिक है।',
+    actions: [
+      {
+        id: 'inspect-headline',
+        action: 'headline-index',
+        label: 'Inspect Headline Index',
+        labelHi: 'हेडलाइन विश्लेषण देखें',
+        icon: 'TrendingUp'
+      },
+      {
+        id: 'view-methodology',
+        action: 'methodology',
+        label: 'View Calculation Methodology',
+        labelHi: 'गणना कार्यप्रणाली देखें',
+        icon: 'Calculator'
+      }
+    ]
+  },
+  {
+    id: 'problem-solved',
+    category: 'basics',
+    questionEn: 'What problem does PUSHPAK solve?',
+    questionHi: 'पुष्पक कौन सी समस्या का समाधान करता है?',
+    simpleEn: 'PUSHPAK solves the measurement lag and opacity in domestic passenger airfares by separating structural capacity airline pricing from temporary last-minute scarcity surges.',
+    simpleHi: 'पुष्पक बुनियादी संरचनात्मक एयरलाइन किराए को अंतिम समय की अस्थायी वृद्धि से अलग करके घरेलू हवाई किराए में मापन विलंब और अस्पष्टता की समस्या का समाधान करता है।',
+    whyMattersEn: 'When public debate erupts regarding extreme airfare spikes (e.g. during festival seasons or natural disruptions), policymakers often lack transparent data to know whether baseline capacity has inflated or if only last-minute walk-up tickets are surging.',
+    whyMattersHi: 'त्योहारों या आपात स्थितियों में जब किराए में भारी उछाल आता है, तो नीति निर्माताओं के पास यह जानने के लिए पारदर्शी डेटा नहीं होता कि क्या बुनियादी क्षमता महंगी हुई है या केवल अंतिम समय के टिकटों में वृद्धि हुई है।',
+    howCalculatedEn: 'By isolating advance booking horizons (T+15, T+30, T+45) from near-term walk-up windows (T+1, T+7), PUSHPAK produces two distinct indices: Headline and Core.',
+    howCalculatedHi: 'अग्रिम बुकिंग विंडो (T+15, T+30, T+45) को निकट-अवधि वॉक-अप विंडो (T+1, T+7) से अलग करके, पुष्पक दो स्पष्ट सूचकांक तैयार करता है: हेडलाइन और कोर।'
+  },
+  {
+    id: 'cpi-augmentation',
+    category: 'basics',
+    questionEn: 'Why is airfare pricing important for CPI augmentation?',
+    questionHi: 'सीपीआई संवर्धन हेतु हवाई किराया मूल्य निर्धारण क्यों महत्वपूर्ण है?',
+    simpleEn: 'CPI augmentation means enhancing the official Consumer Price Index with higher-frequency, transparent proxy data for volatile sub-groups like Transport & Communication.',
+    simpleHi: 'सीपीआई संवर्धन का अर्थ परिवहन और संचार जैसे अस्थिर उप-समूहों के लिए उच्च-आवृत्ति, पारदर्शी डेटा के माध्यम से आधिकारिक उपभोक्ता मूल्य सूचकांक को सुदृढ़ बनाना है।',
+    whyMattersEn: 'In India, the Ministry of Statistics and Programme Implementation (MoSPI) publishes the monthly Consumer Price Index. High-frequency transport indicators help economic statisticians model inflation velocity earlier and more accurately.',
+    whyMattersHi: 'भारत में सांख्यिकी और कार्यक्रम कार्यान्वयन मंत्रालय (MoSPI) मासिक सीपीआई प्रकाशित करता है। उच्च-आवृत्ति परिवहन संकेतक अर्थशास्त्रियों को मुद्रास्फीति की गति का पहले और सटीक अनुमान लगाने में सहायता करते हैं।',
+    howCalculatedEn: 'PUSHPAK serves as a research prototype demonstrating how digital fare observation pipelines can support national statistical agencies without requiring proprietary airline databases.',
+    howCalculatedHi: 'पुष्पक एक प्रोटोटाइप के रूप में दर्शाता है कि डिजिटल किराया अवलोकन पाइपलाइनें बिना किसी गोपनीय डेटाबेस के राष्ट्रीय सांख्यिकी एजेंसियों को कैसे सशक्त बना सकती हैं।'
+  },
+  {
+    id: 'official-status',
+    category: 'basics',
+    questionEn: 'Is PUSHPAK an official Government of India CPI system?',
+    questionHi: 'क्या पुष्पक भारत सरकार का आधिकारिक सीपीआई सिस्टम है?',
+    simpleEn: 'No. PUSHPAK is an independent academic and analytical research prototype designed for technical evaluation and decision-support demonstration.',
+    simpleHi: 'नहीं। पुष्पक एक स्वतंत्र शैक्षणिक और विश्लेषणात्मक अनुसंधान प्रोटोटाइप है जिसे तकनीकी मूल्यांकन और निर्णय-समर्थन प्रदर्शन हेतु विकसित किया गया है।',
+    whyMattersEn: 'Statutory national inflation indices in India are exclusively published by MoSPI and the Reserve Bank of India (RBI). PUSHPAK is an exploratory framework for CPI augmentation methodology.',
+    whyMattersHi: 'भारत में वैधानिक राष्ट्रीय मुद्रास्फीति सूचकांक केवल MoSPI और आरबीआई द्वारा प्रकाशित किए जाते हैं। पुष्पक सीपीआई संवर्धन पद्धति के लिए एक अन्वेषणात्मक ढांचा है।',
+    howCalculatedEn: 'All index series generated by PUSHPAK carry explicit disclaimers affirming their status as analytical heuristics rather than official statutory releases.',
+    howCalculatedHi: 'पुष्पक द्वारा तैयार किए गए सभी सूचकांकों पर स्पष्ट प्रकटीकरण होता है कि वे आधिकारिक वैधानिक आंकड़ों के बजाय विश्लेषणात्मक अनुसंधान प्रॉक्सी हैं।'
+  },
+  {
+    id: 'live-data-question',
+    category: 'basics',
+    questionEn: 'Is this live real-time airfare data?',
+    questionHi: 'क्या यह लाइव वास्तविक समय हवाई किराया डेटा है?',
+    simpleEn: 'No. PUSHPAK explicitly operates in verified demo_simulation mode using audited, deterministic observation datasets.',
+    simpleHi: 'नहीं। पुष्पक स्पष्ट रूप से ऑडिट किए गए, नियतात्मक अवलोकन डेटासेट का उपयोग करके सत्यापित डेमो_सिमुलेशन मोड में संचालित होता है।',
+    whyMattersEn: 'Academic integrity and statutory compliance require platforms to never masquerade synthetic or simulated benchmark data as live commercial airline quotations.',
+    whyMattersHi: 'शैक्षणिक ईमानदारी और कानूनी अनुपालन के लिए आवश्यक है कि कोई भी मंच सिमुलेटेड बेंचमार्क डेटा को लाइव वाणिज्यिक एयरलाइन उद्धरण के रूप में प्रस्तुत न करे।',
+    howCalculatedEn: 'Every record is tagged with provenance metadata (demo_simulation, offline) and audited against SHA-256 cryptographic hashes to ensure full reproducibility.',
+    howCalculatedHi: 'प्रत्येक रिकॉर्ड को उद्गम मेटाडेटा (demo_simulation, offline) से चिह्नित किया जाता है और पूर्ण पुनरुत्पादन सुनिश्चित करने के लिए SHA-256 क्रिप्टोग्राफ़िक हैश द्वारा सत्यापित किया जाता है।'
+  },
+  {
+    id: 'simulation-mode-meaning',
+    category: 'basics',
+    questionEn: 'What does "simulation mode" mean?',
+    questionHi: '"सिमुलेशन मोड" का क्या अर्थ है?',
+    simpleEn: 'Simulation mode means all flight schedules, booking horizons, and airfare distributions are generated from audited, mathematically consistent domestic aviation models.',
+    simpleHi: 'सिमुलेशन मोड का अर्थ है कि सभी उड़ान कार्यक्रम, बुकिंग अवधियां और किराया वितरण ऑडिट किए गए, गणितीय रूप से सुसंगत घरेलू विमानन मॉडल से उत्पन्न किए गए हैं।',
+    whyMattersEn: 'It provides a reliable, reproducible laboratory environment for testing economic index formulas, supervisory policy thresholds, and lead-time volatility without external API downtime.',
+    whyMattersHi: 'यह बाहरी एपीआई रुकावटों के बिना आर्थिक सूचकांक सूत्रों, नीतिगत सीमाओं और अस्थिरता का परीक्षण करने के लिए एक विश्वसनीय, प्रतिलिपि प्रस्तुत करने योग्य वातावरण प्रदान करता है।',
+    howCalculatedEn: 'The backend populates SQLite databases with 50,000 verified flight observations anchored to realistic airline schedules on major metro corridors.',
+    howCalculatedHi: 'बैकएंड प्रमुख महानगर गलियारों में यथार्थवादी एयरलाइन शेड्यूल से जुड़े 50,000 सत्यापित उड़ान रिकॉर्ड्स के साथ डेटाबेस तैयार करता है।'
+  },
+  {
+    id: 'target-audience',
+    category: 'basics',
+    questionEn: 'Who could potentially use this type of analytical system?',
+    questionHi: 'इस प्रकार के विश्लेषणात्मक मंच का उपयोग कौन कर सकता है?',
+    simpleEn: 'The primary audiences are civil aviation regulators (DGCA, Ministry of Civil Aviation), government statistical officers (MoSPI), consumer rights bodies, and economic researchers.',
+    simpleHi: 'लक्षित उपयोगकर्ताओं में नागर विमानन नियामक (DGCA, नागर विमानन मंत्रालय), सरकारी सांख्यिकी अधिकारी (MoSPI), उपभोक्ता अधिकार निकाय और आर्थिक शोधकर्ता शामिल हैं।',
+    whyMattersEn: 'Regulators need automated supervisory heuristics to detect corridor volatility, while statisticians need transparent index aggregation methodologies that reflect realistic consumer purchasing behavior.',
+    whyMattersHi: 'नियामकों को गलियारा अस्थिरता की पहचान के लिए स्वचालित संकेतों की आवश्यकता होती है, जबकि सांख्यिकीविदों को वास्तविक उपभोक्ता व्यवहार को दर्शाने वाले पारदर्शी सूचकांकों की आवश्यकता होती है।',
+    howCalculatedEn: 'The interface is built as a government decision-support dashboard providing instant explainability from macro index levels down to corridor-level fare distributions.',
+    howCalculatedHi: 'इंटरफ़ेस को सरकारी निर्णय-समर्थन डैशबोर्ड के रूप में बनाया गया है जो मैक्रो सूचकांक से लेकर गलियारा-स्तरीय किराया वितरण तक तत्काल स्पष्टीकरण प्रदान करता है।'
+  },
+
+  // =========================================================================
+  // CATEGORY B: PRICE INDEX
+  // =========================================================================
+  {
+    id: 'headline-index-explained',
+    category: 'priceIndex',
+    questionEn: 'What is the PUSHPAK Headline Index?',
+    questionHi: 'पुष्पक हेडलाइन सूचकांक क्या है?',
+    simpleEn: 'The Headline Index is the comprehensive measure of passenger airfare movements across all 5 advance booking horizons: T+1, T+7, T+15, T+30, and T+45.',
+    simpleHi: 'हेडलाइन सूचकांक सभी 5 अग्रिम बुकिंग अवधियों (T+1, T+7, T+15, T+30, T+45) में यात्री हवाई किराए के समग्र संचलन का व्यापक माप है।',
+    whyMattersEn: 'It captures the total dynamic expenditure incurred by travelers, reflecting both advance structural discount planning and steep last-minute walk-up urgency premiums.',
+    whyMattersHi: 'यह अग्रिम छूट वाली योजना और अंतिम समय की आवश्यक यात्रा दोनों को मिलाकर यात्रियों द्वारा किए जाने वाले कुल व्यय को दर्शाता है।',
+    howCalculatedEn: 'Computed via Laspeyres-type aggregation: I_t = Σ(w_i × R_i) × 100, where R_i is the ratio of current mean fare to baseline T+45 fare on each corridor i.',
+    howCalculatedHi: 'इसकी गणना लास्पेरेस-प्रकार के एकत्रीकरण द्वारा की जाती है: I_t = Σ(w_i × R_i) × 100, जहां R_i प्रत्येक गलियारे i पर आधार किराए की तुलना में वर्तमान किराए का अनुपात है।',
+    exampleEn: 'A value of 133.79 indicates the composite airfare basket across representative corridors is currently 33.79% above baseline.',
+    exampleHi: '133.79 का मान दर्शाता है कि प्रतिनिधि गलियारों में हवाई किराया टोकरी वर्तमान में आधार मूल्य से 33.79% ऊपर है।',
+    actions: [
+      {
+        id: 'inspect-headline',
+        action: 'headline-index',
+        label: 'Inspect Headline Index',
+        labelHi: 'हेडलाइन विश्लेषण देखें',
+        icon: 'TrendingUp'
+      },
+      {
+        id: 'understand-core',
+        action: 'core-index',
+        label: 'Understand Core Index',
+        labelHi: 'कोर सूचकांक समझें',
+        icon: 'Layers'
+      },
+      {
+        id: 'open-formula',
+        action: 'formula',
+        label: 'Open Formula Workspace',
+        labelHi: 'सूत्र वर्कस्पेस खोलें',
+        icon: 'Calculator'
+      }
+    ]
+  },
+  {
+    id: 'core-index-explained',
+    category: 'priceIndex',
+    questionEn: 'What is the PUSHPAK Core Index and why are T+1 and T+7 excluded?',
+    questionHi: 'पुष्पक कोर सूचकांक क्या है और इसमें T+1 तथा T+7 को क्यों बाहर रखा गया है?',
+    simpleEn: 'The Core Index focuses exclusively on stable, advance booking horizons: T+15, T+30, and T+45, while completely excluding near-term walk-up windows (T+1 and T+7).',
+    simpleHi: 'कोर सूचकांक पूरी तरह से स्थिर अग्रिम बुकिंग अवधियों (T+15, T+30, T+45) पर केंद्रित है और निकट-अवधि वॉक-अप खिड़कियों (T+1 और T+7) को बाहर रखता है।',
+    whyMattersEn: 'Near-term tickets (1 to 7 days before departure) suffer from severe scarcity and inelastic consumer demand (medical emergencies, urgent business). Revenue management algorithms aggressively inflate these remaining seats. Excluding them isolates underlying structural airline capacity pricing, directly analogous to Core CPI excluding volatile food and fuel.',
+    whyMattersHi: 'प्रस्थान से 1 से 7 दिन पूर्व के टिकटों में अत्यधिक कमी और आपातकालीन यात्रा के कारण कीमतें अत्यधिक बढ़ जाती हैं। इन्हें बाहर रखने से एयरलाइन की बुनियादी संरचनात्मक क्षमता लागत का पता चलता है, जो कि खाद्य और ईंधन को बाहर रखकर कोर सीपीआई मापने के समान है।',
+    howCalculatedEn: 'It aggregates price relatives computed strictly from observations recorded 15, 30, and 45 days before departure, weighting them by corridor flight volume shares.',
+    howCalculatedHi: 'यह प्रस्थान से 15, 30 और 45 दिन पहले दर्ज अवलोकनों से मूल्य सापेक्षों की गणना करता है और उन्हें गलियारे के उड़ान भार से संयोजित करता है।',
+    exampleEn: 'While the Headline Index stands at 133.79, the Core Index is 112.94 (+12.94%), demonstrating that baseline capacity pricing has grown moderately, whereas last-minute pricing accounts for the bulk of volatility.',
+    exampleHi: 'जहाँ हेडलाइन सूचकांक 133.79 है, वहीं कोर सूचकांक 112.94 (+12.94%) है, जो दर्शाता है कि बुनियादी क्षमता में केवल मध्यम वृद्धि हुई है और अधिकांश अस्थिरता अंतिम समय के टिकटों में है।',
+    actions: [
+      {
+        id: 'understand-core',
+        action: 'core-index',
+        label: 'Understand Core Index',
+        labelHi: 'कोर सूचकांक समझें',
+        icon: 'Layers'
+      },
+      {
+        id: 'inspect-headline',
+        action: 'headline-index',
+        label: 'Inspect Headline Index',
+        labelHi: 'हेडलाइन विश्लेषण देखें',
+        icon: 'TrendingUp'
+      },
+      {
+        id: 'surge-spread',
+        action: 'surge-spread',
+        label: 'Examine Surge Spread',
+        labelHi: 'सर्ज स्प्रेड विश्लेषण',
+        icon: 'Flame'
+      }
+    ]
+  },
+  {
+    id: 'surge-spread-deep',
+    category: 'priceIndex',
+    questionEn: 'What is the Walk-Up Surge Spread?',
+    questionHi: 'वॉक-अप वृद्धि अंतर (Walk-Up Surge Spread) क्या है?',
+    simpleEn: 'The Walk-Up Surge Spread is the arithmetic difference between the Headline Index and the Core Index: Headline (133.79) − Core (112.94) = +20.85 index points (+18.46% markup).',
+    simpleHi: 'वॉक-अप वृद्धि अंतर हेडलाइन सूचकांक और कोर सूचकांक के बीच का अंतर है: हेडलाइन (133.79) − कोर (112.94) = +20.85 अंक (+18.46% मार्कअप)।',
+    whyMattersEn: 'It isolates the dynamic scarcity premium that airlines extract from passengers who must travel on short notice, providing policymakers with a clean indicator of algorithmic yield escalation.',
+    whyMattersHi: 'यह अल्प सूचना पर यात्रा करने वाले यात्रियों से एयरलाइनों द्वारा वसूले जाने वाले गतिशील प्रीमियम को अलग करता है, जिससे नीति निर्माताओं को एल्गोरिथम मूल्य वृद्धि का सटीक संकेत मिलता है।',
+    howCalculatedEn: 'Spread Points = Headline − Core; Spread Markup Percentage = (Spread Points / Core Index) × 100 = (20.85 / 112.94) × 100 = 18.46%.',
+    howCalculatedHi: 'स्प्रेड अंक = हेडलाइन − कोर; मार्कअप प्रतिशत = (स्प्रेड अंक / कोर सूचकांक) × 100 = (20.85 / 112.94) × 100 = 18.46%।',
+    actions: [
+      {
+        id: 'surge-spread',
+        action: 'surge-spread',
+        label: 'Examine Surge Spread',
+        labelHi: 'सर्ज स्प्रेड विश्लेषण',
+        icon: 'Flame'
+      },
+      {
+        id: 'inspect-headline',
+        action: 'headline-index',
+        label: 'Inspect Headline Index',
+        labelHi: 'हेडलाइन विश्लेषण देखें',
+        icon: 'TrendingUp'
+      },
+      {
+        id: 'understand-core',
+        action: 'core-index',
+        label: 'Understand Core Index',
+        labelHi: 'कोर सूचकांक समझें',
+        icon: 'Layers'
+      }
+    ]
+  },
+  {
+    id: 'why-base-100',
+    category: 'priceIndex',
+    questionEn: 'Why is the base value 100 and what does an index value of 133.79 mean?',
+    questionHi: 'आधार मान 100 क्यों होता है और 133.79 के सूचकांक का क्या अर्थ है?',
+    simpleEn: 'In statistical index theory, a benchmark period is normalized to 100.00 so all subsequent price changes can be read directly as percentage changes relative to the baseline.',
+    simpleHi: 'सांख्यिकीय सूचकांक सिद्धांत में, संदर्भ अवधि को 100.00 पर सामान्यीकृत किया जाता है ताकि बाद के सभी मूल्य परिवर्तनों को आधार के सापेक्ष प्रतिशत के रूप में पढ़ा जा सके।',
+    whyMattersEn: 'In PUSHPAK, Base = 100.00 represents structural capacity fares observed at the 45-day advance purchase window (T+45), before dynamic yield scarcity takes effect.',
+    whyMattersHi: 'पुष्पक में, आधार = 100.00 45-दिन अग्रिम बुकिंग (T+45) पर देखे गए संरचनात्मक किराए का प्रतिनिधित्व करता है, इससे पहले कि अंतिम समय की कमी का असर पड़े।',
+    howCalculatedEn: 'An index value of 133.79 means: (133.79 − 100.00) = +33.79% price increase across the representative basket relative to advance baseline reference fares.',
+    howCalculatedHi: '133.79 के सूचकांक का अर्थ है: (133.79 − 100.00) = आधार संदर्भ किराए की तुलना में प्रतिनिधि टोकरी में +33.79% की मूल्य वृद्धि।',
+    actions: [
+      {
+        id: 'inspect-headline',
+        action: 'headline-index',
+        label: 'Inspect Headline Index',
+        labelHi: 'हेडलाइन विश्लेषण देखें',
+        icon: 'TrendingUp'
+      },
+      {
+        id: 'understand-core',
+        action: 'core-index',
+        label: 'Understand Core Index',
+        labelHi: 'कोर सूचकांक समझें',
+        icon: 'Layers'
+      },
+      {
+        id: 'open-formula',
+        action: 'formula',
+        label: 'Open Formula Workspace',
+        labelHi: 'सूत्र वर्कस्पेस खोलें',
+        icon: 'Calculator'
+      }
+    ]
+  },
+  {
+    id: 'booking-horizons-explained',
+    category: 'priceIndex',
+    questionEn: 'What are booking horizons (T+1, T+7, T+15, T+30, T+45)?',
+    questionHi: 'बुकिंग क्षितिज (T+1, T+7, T+15, T+30, T+45) क्या हैं?',
+    simpleEn: 'Booking horizons denote the lead time in days between when a ticket is observed or purchased and the scheduled flight departure date.',
+    simpleHi: 'बुकिंग क्षितिज टिकट देखे जाने या खरीदे जाने और उड़ान प्रस्थान की तारीख के बीच के दिनों की संख्या को दर्शाते हैं।',
+    whyMattersEn: 'Airlines price identical physical seats differently depending on lead time. Advance windows offer structural baseline rates, while near-term windows trigger algorithmic yield markups.',
+    whyMattersHi: 'एयरलाइनें प्रस्थान के समय के आधार पर एक ही सीट के लिए अलग-अलग किराया तय करती हैं। अग्रिम खिड़कियां आधार दरें पेश करती हैं, जबकि निकट-अवधि खिड़कियां स्वचालित वृद्धि को सक्रिय करती हैं।',
+    howCalculatedEn: 'T+1 = 1 day before departure (walk-up); T+7 = 1 week out; T+15 = 2 weeks out; T+30 = 1 month out; T+45 = 45 days out (structural capacity benchmark).',
+    howCalculatedHi: 'T+1 = प्रस्थान से 1 दिन पहले (वॉक-अप); T+7 = 1 सप्ताह पहले; T+15 = 2 सप्ताह पहले; T+30 = 1 माह पहले; T+45 = 45 दिन पहले (संरचनात्मक बेंचमार्क)।',
+    actions: [
+      {
+        id: 'inspect-headline',
+        action: 'headline-index',
+        label: 'Inspect Headline Index',
+        labelHi: 'हेडलाइन विश्लेषण देखें',
+        icon: 'TrendingUp'
+      },
+      {
+        id: 'understand-core',
+        action: 'core-index',
+        label: 'Understand Core Index',
+        labelHi: 'कोर सूचकांक समझें',
+        icon: 'Layers'
+      }
+    ]
+  },
+  {
+    id: 'route-weights-laspeyres',
+    category: 'priceIndex',
+    questionEn: 'How are representative routes selected and route weights calculated?',
+    questionHi: 'प्रतिनिधि मार्गों का चयन और उनके भार की गणना कैसे की जाती है?',
+    simpleEn: 'Routes are selected based on passenger traffic density on major domestic metro corridors. Route weights reflect each corridor\'s share of observed flight volumes.',
+    simpleHi: 'प्रमुख महानगर गलियारों में यात्री यातायात घनत्व के आधार पर मार्गों का चयन किया जाता है। मार्ग भार देखे गए उड़ान रिकॉर्ड्स में प्रत्येक गलियारे के हिस्से को दर्शाते हैं।',
+    whyMattersEn: 'A route connecting major business hubs carries more economic weight in national consumer expenditure than a thin regional route. Weighting ensures the index accurately reflects overall consumer expenditure.',
+    whyMattersHi: 'प्रमुख व्यापारिक केंद्रों को जोड़ने वाले मार्ग का क्षेत्रीय मार्ग की तुलना में अधिक आर्थिक महत्व होता है। भार यह सुनिश्चित करता है कि सूचकांक कुल उपभोक्ता व्यय को सटीक रूप से दर्शाए।',
+    howCalculatedEn: 'Current sample weights sum to 100%: DEL-BLR (40.74%), DEL-BOM (39.92%), BOM-BLR (19.34%). Each corridor\'s price relative is multiplied by its assigned weight.',
+    howCalculatedHi: 'वर्तमान नमूना भार 100% हैं: DEL-BLR (40.74%), DEL-BOM (39.92%), BOM-BLR (19.34%)। प्रत्येक गलियारे के मूल्य सापेक्ष को उसके निर्धारित भार से गुणा किया जाता है।',
+    actions: [
+      {
+        id: 'open-formula',
+        action: 'formula',
+        label: 'Open Formula Workspace',
+        labelHi: 'सूत्र वर्कस्पेस खोलें',
+        icon: 'Calculator'
+      },
+      {
+        id: 'view-methodology',
+        action: 'methodology',
+        label: 'View Calculation Methodology',
+        labelHi: 'गणना कार्यप्रणाली देखें',
+        icon: 'Calculator'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // CATEGORY C: AIRFARE INTELLIGENCE
+  // =========================================================================
+  {
+    id: 'fare-volatility-cv',
+    category: 'fareIntelligence',
+    questionEn: 'What is fare volatility and what is the Coefficient of Variation (CV)?',
+    questionHi: 'किराया अस्थिरता क्या है और भिन्नता गुणांक (CV) क्या दर्शाता है?',
+    simpleEn: 'Fare volatility measures how widely airfares fluctuate across advance booking horizons. The Coefficient of Variation (CV) standardizes this dispersion as a percentage of the route\'s average fare.',
+    simpleHi: 'किराया अस्थिरता यह मापती है कि बुकिंग अवधियों में हवाई किराया कितना बदलता है। भिन्नता गुणांक (CV) इस फैलाव को औसत किराए के प्रतिशत के रूप में मानकीकृत करता है।',
+    whyMattersEn: 'A high CV indicates that travelers face severe price unpredictability depending on when they book, signalling aggressive dynamic yield pricing on that corridor.',
+    whyMattersHi: 'एक उच्च CV दर्शाता है कि यात्रियों को बुकिंग के समय के आधार पर गंभीर मूल्य अनिश्चितता का सामना करना पड़ता है, जो उस मार्ग पर आक्रामक गतिशील मूल्य निर्धारण का संकेत है।',
+    howCalculatedEn: 'CV = (Sample Standard Deviation / Mean Fare) × 100. PUSHPAK classifies CV < 15% as Low Variation, 15% to 30% as Moderate Variation, and > 30% as High Volatility.',
+    howCalculatedHi: 'CV = (मानक विचलन / औसत किराया) × 100। पुष्पक 15% से कम को निम्न, 15% से 30% को मध्यम और 30% से अधिक को उच्च अस्थिरता के रूप में वर्गीकृत करता है।'
+  },
+  {
+    id: 'mean-vs-median-fares',
+    category: 'fareIntelligence',
+    questionEn: 'Why does PUSHPAK report both Mean and Median fares?',
+    questionHi: 'पुष्पक औसत (Mean) और माध्यिका (Median) दोनों किराए क्यों दिखाता है?',
+    simpleEn: 'Airfare distributions are strongly right-skewed by a small number of extreme walk-up ticket prices. Mean captures total revenue, while Median reflects the typical fare paid by 50% of travelers.',
+    simpleHi: 'अंतिम समय के महंगे टिकटों के कारण हवाई किराए का वितरण विषम होता है। औसत कुल राजस्व को दर्शाता है, जबकि माध्यिका 50% सामान्य यात्रियों द्वारा चुकाए गए विशिष्ट किराए को दर्शाती है।',
+    whyMattersEn: 'If an airline sells 9 seats at ₹5,000 and 1 emergency seat at ₹25,000, the Mean is ₹7,000 but the Median is ₹5,000. Reporting both prevents misleading conclusions regarding typical consumer outlays.',
+    whyMattersHi: 'यदि 9 सीटें ₹5,000 पर और 1 आपातकालीन सीट ₹25,000 पर बिकती है, तो औसत ₹7,000 होगा लेकिन माध्यिका ₹5,000। दोनों को दिखाना सामान्य उपभोक्ता व्यय का सही परिप्रेक्ष्य देता है।'
+  },
+  {
+    id: 'carrier-price-spread',
+    category: 'fareIntelligence',
+    questionEn: 'What is Carrier Price Spread and why does it matter?',
+    questionHi: 'विमानन कंपनी मूल्य प्रसार (Carrier Price Spread) क्या है?',
+    simpleEn: 'Carrier Price Spread is the difference in average airfares charged by different airlines operating on the exact same corridor over identical observation windows.',
+    simpleHi: 'विमानन कंपनी मूल्य प्रसार एक ही मार्ग पर समान अवधि के दौरान विभिन्न एयरलाइनों द्वारा लिए जाने वाले औसत किराए का अंतर है।',
+    whyMattersEn: 'A tight spread indicates vigorous price competition matching competitor yields, while a wide spread highlights market tiering (e.g. low-cost carriers versus full-service airlines with corporate contracts).',
+    whyMattersHi: 'एक संकीर्ण प्रसार सक्रिय मूल्य प्रतिस्पर्धा को दर्शाता है, जबकि एक विस्तृत प्रसार बाजार विभाजन (कम लागत वाली एयरलाइन बनाम पूर्ण सेवा एयरलाइन) को उजागर करता है।',
+    howCalculatedEn: 'Spread = (Highest Airline Mean Fare − Lowest Airline Mean Fare); Spread Percentage = (Spread / Route Mean Fare) × 100.',
+    howCalculatedHi: 'प्रसार = (अधिकतम औसत किराया − न्यूनतम औसत किराया); प्रसार प्रतिशत = (प्रसार / मार्ग औसत किराया) × 100।'
+  },
+  {
+    id: 'deterministic-insights-ml',
+    category: 'fareIntelligence',
+    questionEn: 'How are deterministic insights generated and is machine learning used?',
+    questionHi: 'नियतात्मक अंतर्दृष्टि कैसे उत्पन्न होती है और क्या मशीन लर्निंग का उपयोग किया गया है?',
+    simpleEn: 'PUSHPAK relies strictly on transparent deterministic mathematical and statistical heuristics. It deliberately avoids opaque, black-box machine learning algorithms.',
+    simpleHi: 'पुष्पक पूरी तरह से पारदर्शी नियतात्मक गणितीय और सांख्यिकीय नियमों पर निर्भर करता है। यह ब्लैक-बॉक्स मशीन लर्निंग एल्गोरिदम से बचता है।',
+    whyMattersEn: 'Government statistical and supervisory decision-support requires 100% auditability and legal explainability. Every insight can be traced back to exact database observations.',
+    whyMattersHi: 'सरकारी सांख्यिकी और विनियामक निर्णय-समर्थन के लिए 100% लेखा-परीक्षण और कानूनी स्पष्टीकरण आवश्यक है। प्रत्येक अंतर्दृष्टि को डेटाबेस से सत्यापित किया जा सकता है।',
+    howCalculatedEn: 'Rules evaluate numerical criteria (e.g. walk-up markup > 60%, CV > 30%, operating carriers <= 2) to deterministically generate explanatory narrative findings.',
+    howCalculatedHi: 'नियम संख्यात्मक मानदंडों (जैसे वॉक-अप मार्कअप > 60%, CV > 30%, ऑपरेटर <= 2) का मूल्यांकन करके व्याख्यात्मक निष्कर्ष उत्पन्न करते हैं।'
+  },
+
+  // =========================================================================
+  // CATEGORY D: POLICY INTELLIGENCE
+  // =========================================================================
+  {
+    id: 'policy-flags-definition',
+    category: 'policyIntelligence',
+    questionEn: 'What is a policy flag and what do HIGH, MEDIUM, and LOW severities mean?',
+    questionHi: 'नीतिगत संकेत (Policy Flag) क्या है और HIGH, MEDIUM, LOW गंभीरता का क्या अर्थ है?',
+    simpleEn: 'Policy flags are automated supervisory signals triggered when an audited corridor metric crosses a pre-established supervisory threshold.',
+    simpleHi: 'नीतिगत संकेत स्वचालित पर्यवेक्षी अलर्ट हैं जो तब उत्पन्न होते हैं जब कोई मार्ग मीट्रिक पूर्व-स्थापित सीमा को पार करता है।',
+    whyMattersEn: 'They provide aviation supervisors with an automated radar, filtering thousands of flights down to corridors that exhibit genuine pricing anomalies or consumer pressure.',
+    whyMattersHi: 'वे विमानन पर्यवेक्षकों को एक स्वचालित रडार प्रदान करते हैं, जिससे वे हजारों उड़ानों में से उन गलियारों की पहचान कर सकते हैं जहां मूल्य निर्धारण में असामान्य वृद्धि हुई है।',
+    howCalculatedEn: 'HIGH severity = severe surge (walk-up markup > 60%, CV > 30%); MEDIUM severity = moderate yield escalation (markup 25-60%); LOW severity = normal variance bands with healthy competition.',
+    howCalculatedHi: 'HIGH गंभीरता = अत्यधिक उछाल (मार्कअप > 60%, CV > 30%); MEDIUM गंभीरता = मध्यम वृद्धि (मार्कअप 25-60%); LOW गंभीरता = सामान्य मूल्य बैंड और पर्याप्त प्रतिस्पर्धा।',
+    actions: [
+      {
+        id: 'explore-policy',
+        action: 'policy-intelligence',
+        label: 'Explore Policy Intelligence',
+        labelHi: 'नीति आसूचना देखें',
+        icon: 'ShieldAlert'
+      }
+    ]
+  },
+  {
+    id: 'policy-priority-categories',
+    category: 'policyIntelligence',
+    questionEn: 'What are HIGH_ATTENTION, MONITOR, and LOW_ATTENTION priority classifications?',
+    questionHi: 'HIGH_ATTENTION, MONITOR और LOW_ATTENTION प्राथमिकता वर्गीकरण क्या हैं?',
+    simpleEn: 'These are route-level composite supervisory classifications aggregating all active flags, volatility metrics, and carrier competition into one clear status.',
+    simpleHi: 'ये मार्ग-स्तरीय समग्र वर्गीकरण हैं जो सभी सक्रिय अलर्ट, अस्थिरता और एयरलाइन प्रतिस्पर्धा को एक स्पष्ट स्थिति में जोड़ते हैं।',
+    whyMattersEn: 'Civil aviation supervisors cannot inspect every flight manually. These classifications prioritize which corridors require supervisory review.',
+    whyMattersHi: 'विमानन पर्यवेक्षक प्रत्येक उड़ान की मैन्युअल समीक्षा नहीं कर सकते। ये वर्गीकरण प्राथमिकता तय करते हैं कि किन गलियारों की तत्काल समीक्षा आवश्यक है।',
+    howCalculatedEn: 'HIGH_ATTENTION is assigned when 2 or more high-severity triggers occur; MONITOR reflects corridors with single moderate alerts; LOW_ATTENTION reflects stable corridors.',
+    howCalculatedHi: 'HIGH_ATTENTION तब दिया जाता है जब 2 या अधिक उच्च-गंभीरता अलर्ट हों; MONITOR एकल मध्यम अलर्ट दर्शाता है; LOW_ATTENTION स्थिर गलियारों को दर्शाता है।'
+  },
+  {
+    id: 'non-regulatory-disclaimer',
+    category: 'policyIntelligence',
+    questionEn: 'Are PUSHPAK policy flags official government regulations or punitive orders?',
+    questionHi: 'क्या पुष्पक नीतिगत संकेत आधिकारिक सरकारी नियम या दंडात्मक आदेश हैं?',
+    simpleEn: 'No. PUSHPAK policy classifications are analytical decision-support heuristics and NOT statutory Government of India regulations or punitive directives.',
+    simpleHi: 'नहीं। पुष्पक नीति वर्गीकरण केवल विश्लेषणात्मक निर्णय-समर्थन संकेत हैं और ये आधिकारिक सरकारी नियम या दंडात्मक निर्देश नहीं हैं।',
+    whyMattersEn: 'Airfare pricing in India operates under a deregulated market environment supervised by the Directorate General of Civil Aviation (DGCA). PUSHPAK does not impose statutory price caps.',
+    whyMattersHi: 'भारत में हवाई किराया नागर विमानन महानिदेशालय (DGCA) की निगरानी में विनियंत्रित बाजार व्यवस्था के तहत संचालित होता है। पुष्पक कोई वैधानिक मूल्य सीमा लागू नहीं करता।',
+    howCalculatedEn: 'All policy views display prominent institutional disclaimer banners clarifying their status as analytical advisory indicators.',
+    howCalculatedHi: 'सभी नीतिगत पेजों पर प्रमुख प्रकटीकरण बैनर प्रदर्शित होते हैं जो स्पष्ट करते हैं कि ये केवल विश्लेषणात्मक परामर्श संकेतक हैं।'
+  },
+
+  // =========================================================================
+  // CATEGORY E: ROUTE NETWORK
+  // =========================================================================
+  {
+    id: 'observed-records-vs-flights',
+    category: 'routeNetwork',
+    questionEn: 'Does "50,000 observed records" mean 50,000 active physical flights?',
+    questionHi: 'क्या "50,000 अवलोकित रिकॉर्ड" का अर्थ 50,000 सक्रिय भौतिक उड़ानें हैं?',
+    simpleEn: 'No. In airfare index methodology, an observed flight record represents a discrete fare observation captured for a specific flight schedule across a defined booking horizon.',
+    simpleHi: 'नहीं। मूल्य सूचकांक पद्धति में, अवलोकित रिकॉर्ड एक विशिष्ट उड़ान और बुकिंग अवधि के लिए दर्ज किए गए किराए के अवलोकन को दर्शाता है।',
+    whyMattersEn: 'A single physical flight operating daily is observed across multiple advance purchase horizons (T+1, T+7, T+15, T+30, T+45) and across different seat inventory classes, generating multiple observation records.',
+    whyMattersHi: 'प्रतिदिन संचालित होने वाली एक भौतिक उड़ान को कई अग्रिम बुकिंग अवधियों (T+1, T+7, आदि) में देखा जाता है, जिससे कई अवलोकन रिकॉर्ड बनते हैं।',
+    howCalculatedEn: 'The flight registry models domestic scheduled routes, where 50,000 records represent the multi-horizon sampling basket across the representative network corridors.',
+    howCalculatedHi: 'उड़ान रजिस्ट्री घरेलू मार्गों को मॉडल करती है, जहाँ 50,000 रिकॉर्ड प्रतिनिधि नेटवर्क गलियारों में बहु-अवधि नमूना टोकरी का प्रतिनिधित्व करते हैं।'
+  },
+  {
+    id: 'corridor-definition',
+    category: 'routeNetwork',
+    questionEn: 'What is a corridor and what do average duration and non-stop records represent?',
+    questionHi: 'गलियारा (Corridor) क्या है और औसत अवधि क्या दर्शाती है?',
+    simpleEn: 'A corridor represents a directional city-pair link (e.g. DEL-BOM is New Delhi to Mumbai; DEL-BLR is New Delhi to Bengaluru).',
+    simpleHi: 'एक गलियारा दो शहरों के बीच के हवाई मार्ग को दर्शाता है (उदा. DEL-BOM दिल्ली से मुम्बई; DEL-BLR दिल्ली से बेंगलुरु)।',
+    whyMattersEn: 'Airfare economics and carrier competition vary by corridor based on distance, business density, airport slot constraints, and alternative rail transport.',
+    whyMattersHi: 'दूरी, व्यापारिक घनत्व, हवाईअड्डा स्लॉट और वैकल्पिक रेल परिवहन के आधार पर प्रत्येक गलियारे में हवाई किराया और प्रतिस्पर्धा भिन्न होती है।',
+    howCalculatedEn: 'Average duration is the scheduled block flight time in hours; non-stop records indicate direct airport-to-airport point flights without intermediate layovers.',
+    howCalculatedHi: 'औसत अवधि निर्धारित उड़ान समय है; नॉन-स्टॉप रिकॉर्ड बिना किसी लेओवर के सीधी उड़ानों को दर्शाते हैं।',
+    actions: [
+      {
+        id: 'explore-route',
+        action: 'route',
+        routeCode: 'DEL-BOM',
+        label: 'Inspect Route (DEL-BOM)',
+        labelHi: 'मार्ग विश्लेषण (DEL-BOM)',
+        icon: 'Plane'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // CATEGORY F: DATA TRANSPARENCY & PROVENANCE
+  // =========================================================================
+  {
+    id: 'data-provenance-sha256',
+    category: 'transparency',
+    questionEn: 'What is data provenance, what is a source hash, and why is SHA-256 used?',
+    questionHi: 'डेटा उद्गम (Provenance) क्या है और SHA-256 का उपयोग क्यों किया जाता है?',
+    simpleEn: 'Data provenance is the documented, tamper-evident audit trail tracing every airfare observation back to its exact origin, timestamp, and connector.',
+    simpleHi: 'डेटा उद्गम एक छेड़छाड़-रोधी ऑडिट ट्रेल है जो प्रत्येक किराए के अवलोकन को उसके मूल स्रोत, समय और कनेक्टर तक प्रमाणित करता है।',
+    whyMattersEn: 'Without cryptographic provenance, analytical models can be questioned for subjective data filtering or cherry-picking. SHA-256 guarantees that records cannot be altered post-ingestion.',
+    whyMattersHi: 'क्रिप्टोग्राफ़िक उद्गम के बिना किसी भी मॉडल पर डेटा में हेरफेर का आरोप लग सकता है। SHA-256 यह सुनिश्चित करता है कि दर्ज किए जाने के बाद डेटा को बदला नहीं जा सकता।',
+    howCalculatedEn: 'Each record hashes its canonical string (route + timestamp + airline + base fare) using SHA-256, generating a unique 64-character hexadecimal fingerprint stored in SQLite.',
+    howCalculatedHi: 'प्रत्येक रिकॉर्ड अपने डेटा स्ट्रिंग का SHA-256 का उपयोग करके हैश उत्पन्न करता है, जिससे 64-वर्णों का विशिष्ट डिजिटल फिंगरप्रिंट बनता है।'
+  },
+  {
+    id: 'deterministic-reproducibility',
+    category: 'transparency',
+    questionEn: 'What does deterministic reproducibility mean in PUSHPAK?',
+    questionHi: 'पुष्पक में नियतात्मक पुनरुत्पादन (Deterministic Reproducibility) का क्या अर्थ है?',
+    simpleEn: 'Deterministic reproducibility means that re-running the exact same analytical pipeline or price index calculation on the database will always produce 100% identical outputs.',
+    simpleHi: 'नियतात्मक पुनरुत्पादन का अर्थ है कि डेटाबेस पर एक ही गणना को दोबारा चलाने पर परिणाम हमेशा 100% समान आएंगे।',
+    whyMattersEn: 'Official government statistics require deterministic consistency. Non-deterministic random seeds or unseeded stochastic simulations cannot be defended during public audits.',
+    whyMattersHi: 'सरकारी सांख्यिकी में निरंतरता आवश्यक है। सार्वजनिक ऑडिट में यादृच्छिक या अस्पष्ट सिमुलेशन का बचाव नहीं किया जा सकता।',
+    howCalculatedEn: 'All seeding routines, statistical variance algorithms, and Laspeyres weights use fixed deterministic seeds and explicit mathematical functions.',
+    howCalculatedHi: 'सभी सिमुलेशन एल्गोरिदम और लास्पेरेस सूत्र निश्चित नियतात्मक बीजों और स्पष्ट गणितीय फलनों का उपयोग करते हैं।'
+  },
+
+  // =========================================================================
+  // CATEGORY G: METHODOLOGY & CPI
+  // =========================================================================
+  {
+    id: 'complete-methodology-pipeline',
+    category: 'methodology',
+    questionEn: 'How does PUSHPAK move from raw data to government decision support?',
+    questionHi: 'पुष्पक कच्चे डेटा से सरकार के निर्णय-समर्थन तक कैसे पहुंचता है?',
+    simpleEn: 'PUSHPAK executes a structured 6-stage pipeline: (1) Data Ingestion with SHA-256 hashes, (2) Flight Registry mapping, (3) Lead-time Fare Analytics, (4) Intelligence classification, (5) Policy Flag heuristics, and (6) Laspeyres-type Price Index computation.',
+    simpleHi: 'पुष्पक 6-चरणीय पाइपलाइन का पालन करता है: (1) SHA-256 हैश के साथ डेटा अधिग्रहण, (2) उड़ान रजिस्ट्री मैपिंग, (3) अग्रिम किराया विश्लेषण, (4) आसूचना वर्गीकरण, (5) नीतिगत संकेत, और (6) लास्पेरेस मूल्य सूचकांक गणना।',
+    whyMattersEn: 'This end-to-end flow demonstrates how statistical bodies like MoSPI and aviation authorities like DGCA can move from raw multi-carrier observations to actionable, transparent policy indicators.',
+    whyMattersHi: 'यह प्रवाह दर्शाता है कि कैसे सांख्यिकी निकाय और विमानन प्राधिकरण बहु-विमानन डेटा से पारदर्शी नीतिगत संकेतक तैयार कर सकते हैं।',
+    howCalculatedEn: 'Raw observations undergo schema validation, are loaded into SQLite WAL databases, analyzed across horizons, categorized into volatility tiers, and aggregated into composite indices.',
+    howCalculatedHi: 'कच्चे अवलोकनों का स्कीमा सत्यापन होता है, उन्हें डेटाबेस में दर्ज किया जाता है, अवधियों में विश्लेषण किया जाता है, और समग्र सूचकांकों में संयोजित किया जाता है।',
+    actions: [
+      {
+        id: 'open-formula',
+        action: 'formula',
+        label: 'Open Formula Workspace',
+        labelHi: 'सूत्र वर्कस्पेस खोलें',
+        icon: 'Calculator'
+      },
+      {
+        id: 'view-methodology',
+        action: 'methodology',
+        label: 'View Calculation Methodology',
+        labelHi: 'गणना कार्यप्रणाली देखें',
+        icon: 'Calculator'
+      }
+    ]
+  },
+  {
+    id: 'cpi-augmentation-vision',
+    category: 'methodology',
+    questionEn: 'How can this methodology augment the official Consumer Price Index (CPI)?',
+    questionHi: 'यह कार्यप्रणाली आधिकारिक उपभोक्ता मूल्य सूचकांक (CPI) को कैसे संवर्धित कर सकती है?',
+    simpleEn: 'By serving as a high-frequency algorithmic satellite index that monitors domestic airfares daily rather than through discrete, lagged monthly quotations.',
+    simpleHi: 'एक उच्च-आवृत्ति एल्गोरिथम उपग्रह सूचकांक के रूप में कार्य करके जो विलंबित मासिक उद्धरणों के बजाय दैनिक आधार पर हवाई किराए की निगरानी करता है।',
+    whyMattersEn: 'In high-inflation or high-volatility environments, traditional monthly sampling lags market realities. An algorithmic price index proxy provides early-warning inflation signals for the Transport & Communication subgroup.',
+    whyMattersHi: 'मुद्रास्फीति के दौर में पारंपरिक मासिक नमूने बाजार की वास्तविकताओं से पिछड़ जाते हैं। एक एल्गोरिथम सूचकांक परिवहन उपसमूह के लिए प्रारंभिक चेतावनी संकेत प्रदान करता है।',
+    howCalculatedEn: 'By maintaining fixed-basket Laspeyres aggregation weighted by annual passenger traffic, PUSHPAK mirrors international CPI standards established by the IMF and ILO.',
+    howCalculatedHi: 'वार्षिक यात्री यातायात द्वारा भारित निश्चित-टोकरी लास्पेरेस एकत्रीकरण का उपयोग करके, पुष्पक आईएमएफ और आईएलओ द्वारा स्थापित अंतरराष्ट्रीय सीपीआई मानकों का पालन करता है।'
+  }
+];

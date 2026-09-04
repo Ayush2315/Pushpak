@@ -50,11 +50,23 @@ This document prepares the team to handle difficult and technical jury questions
 ### Q12: "How does this architecture scale when transitioning from prototype to live government data feeds?"
 - **Answer**: "The intelligence layer is decoupled from the ingestion layer. When transitioning from prototype simulation to live MoCA/DGCA GDS feeds or bilateral airline APIs, zero changes are required in `fare_analytics.py` or the REST API. The analytics engine queries the normalized ANSI SQL `fare_observations` table regardless of whether the rows were populated by sandbox connectors, live feeds, or official statistical surveys."
 
+### Q13: "Is PUSHPAK an official CPI?"
+- **Answer**: "No. PUSHPAK produces a prototype analytical index. It is engineered to demonstrate high-frequency methodology and transparently augment the CPI Transport subgroup, but it is not an official MoSPI statutory release. All API responses explicitly carry disclaimers stating that weights and observations are analytical prototypes."
+
+### Q14: "How is the PUSHPAK Index calculated?"
+- **Answer**: "We establish a base value of 100.00 at the T+45 advance purchase baseline. For each corridor, we compute the price relative $R_i = \text{Current Fare} / \text{Base Fare}$. We then compute a weighted composite index $I = \sum w_i R_i \times 100$, where weights $w_i$ reflect corridor traffic volume from our 50,000-record flight registry and sum strictly to 1.0000. PUSHPAK Headline covers all horizons ($T+1$ to $T+45$), while PUSHPAK Core excludes short-term walk-up volatility ($T+1, T+7$) to measure underlying capacity costs."
+
+### Q15: "Why is the index transparent?"
+- **Answer**: "There are zero black-box formulas, zero neural networks, and zero hidden adjustments. Every route contribution, weight, baseline fare, and current average is exposed directly via the `/api/v1/index/methodology` and `/api/v1/index/summary` APIs. Any economist or judge can inspect raw database records and reproduce our exact index numbers with basic arithmetic."
+
+### Q16: "How would this integrate with MoSPI methodology in production?"
+- **Answer**: "In production, MoSPI economists can replace our prototype volume weights with official Household Consumer Expenditure Survey (HCES) item weights. High-frequency automated scrapers or GDS feeds feed into our existing normalized schema, and our Core Index feeds directly into MoSPI's monthly CPI aggregation engine as an empirical transport price indicator."
+
 ---
 
 ## 4. Honest Prototype Limitations & Future Work
 
-### Q13: "What are the limitations of what you have built today?"
+### Q17: "What are the limitations of what you have built today?"
 - **Answer**: "We are transparent about our current scope:
   1. **Route Coverage**: We focused our prototype pipeline on India's top 3 trunk routes: `DEL-BOM`, `DEL-BLR`, and `BOM-BLR`.
   2. **Advance Windows**: We sample 5 representative booking windows ($T+1, T+7, T+15, T+30, T+45$) rather than all 365 calendar days.
