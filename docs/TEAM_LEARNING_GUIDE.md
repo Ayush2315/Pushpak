@@ -52,13 +52,28 @@ This guide prepares the entire SIH team for tomorrow's presentation. Regardless 
 - **Intermediate**: We enabled Write-Ahead Logging (`PRAGMA journal_mode = WAL;`), which allows fast concurrent reads without locking writers.
 - **Advanced**: Why WAL mode is superior for hackathons: eliminates file locking bugs during simultaneous CLI ingestion and web API requests.
 
+### Topic 6: FastAPI REST Architecture & OpenAPI
+- **Basic (All)**: Our backend serves JSON data through REST endpoints (`/api/v1/...`) and auto-generates interactive API documentation at `/docs` (Swagger UI) and `/redoc`.
+- **Intermediate**: Routers are split into modular domain modules (`health`, `flights`, `routes`, `analytics`, `fares`, `provenance`). Requests and responses are strictly validated via Pydantic v2 schemas.
+- **Advanced**: How data integrity is preserved in the API: flight registry endpoints explicitly return `observed_flight_records` with warning notes that counts are not daily flight frequencies. Fares retain cryptographic hashes (`source_hash`) and provenance mode tags (`demo_simulation`, etc.).
+
+### Topic 7: Fare Intelligence & Explainable Volatility
+- **Basic (All)**: What is data aggregation? Instead of looking at 135 individual numbers, we group them by route, airline, and booking window to find averages, minimums, and maximums.
+- **Intermediate**: What is Standard Deviation and Coefficient of Variation ($CV$)? Standard deviation measures how spread out fares are from the average. $CV$ divides standard deviation by the mean, giving a percentage. This lets us compare a ₹4,000 route and a ₹10,000 route fairly.
+- **Advanced**: Why deterministic rule-based intelligence over machine learning? National statistical and regulatory systems require 100% auditability, explainability, and zero hallucination risk. Rules evaluate mathematical bounds directly and produce plain-English insights with explicit provenance tags.
+
 ---
+
 
 ## 3. Recommended Study Priority Before Tomorrow
 1. **First 30 minutes**: Master Topic 1 (Data Honesty) and Topic 2 (Ethics). This is the #1 question judges ask.
 2. **Next 30 minutes**: Master Topic 3 (`flightsdata.pdf` distinction) and Topic 4 (Advance booking buckets).
-3. **Final 30 minutes**: Rehearse running the CLI command:
+3. **Final 30 minutes**: Rehearse running the CLI commands and demonstrating the live API:
    ```bash
-   python -m backend.ingestion.pipeline
+   # Run tests
+   python -m pytest -v
+
+   # Start backend
+   uvicorn backend.main:app --reload
    ```
-   and explaining the terminal summary box.
+   and navigate to `http://localhost:8000/docs` to execute endpoints in front of judges.

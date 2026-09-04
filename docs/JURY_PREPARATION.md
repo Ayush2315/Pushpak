@@ -28,26 +28,40 @@ This document prepares the team to handle difficult and technical jury questions
 ### Q6: "How do you ensure data integrity and detect tampering?"
 - **Answer**: "Every raw ingestion payload is hashed using SHA-256 (`source_hash`). Stored records retain this cryptographic fingerprint, allowing auditing against upstream sources."
 
+### Q7: "Why choose FastAPI over Flask or Django for this platform?"
+- **Answer**: "FastAPI provides native asynchronous ASGI performance, strict type enforcement via Pydantic v2, and automatic generation of standards-compliant OpenAPI/Swagger documentation (`/docs` and `/redoc`). In a government data pipeline with high-concurrency read queries from dashboards and external statistical systems, FastAPI is both high-throughput and self-documenting."
+
+### Q8: "How does your API ensure external consumers do not mistake your prototype data for real-time ATC flight schedules?"
+- **Answer**: "Through strict API schema design. Every registry endpoint labels flight frequencies as `observed_flight_records` and injects explicit `metric_note` fields stating that counts reflect dataset observations, not daily schedules. Departure times are preserved as categorical bands (`Morning`, `Evening`) rather than fabricated exact timestamps. Furthermore, all fare endpoints return `data_mode` (`demo_simulation`) and `environment` (`offline`) badges."
+
 ---
 
 ## 3. Methodology & Policy Questions (Data / Policy Lead)
 
-### Q7: "Why use the Jevons Geometric Mean rather than a simple average?"
+### Q9: "Why use the Jevons Geometric Mean rather than a simple average?"
 - **Answer**: "The IMF, ILO, and international statistical agencies explicitly reject simple arithmetic averages (the Carli index) for price indices because they exhibit an upward price bias when prices bounce. The Jevons Geometric Mean formula treats price increases and decreases symmetrically, satisfies the time-reversal test, and handles dynamic airline price volatility accurately."
 
-### Q8: "How does this benefit the Ministry of Statistics (MoSPI) and CPI?"
+### Q10: "How does this benefit the Ministry of Statistics (MoSPI) and CPI?"
 - **Answer**: "Airfare is a component of the CPI Transport & Communication subgroup. Currently, official collection is periodic and often limited to fixed advance dates. PUSHPAK captures high-frequency pricing across five booking horizons ($T+1$ to $T+45$). Our Policy Sandbox enables MoSPI economists to test sensitivity scenarios—such as how a 15% festival airfare surge impacts the headline CPI."
+
+### Q11: "Why did PUSHPAK not use Machine Learning / LLMs for route insights and classifications?"
+- **Answer**: "In official government statistics and economic policy, transparency, 100% reproducibility, and auditability are non-negotiable. Black-box neural networks and probabilistic LLMs can hallucinate numbers or provide non-reproducible summaries. PUSHPAK uses deterministic, rule-based mathematical logic: Coefficient of Variation ($CV$) for volatility classification and rule trees for textual insights. Every single metric can be audited against raw database records."
+
+### Q12: "How does this architecture scale when transitioning from prototype to live government data feeds?"
+- **Answer**: "The intelligence layer is decoupled from the ingestion layer. When transitioning from prototype simulation to live MoCA/DGCA GDS feeds or bilateral airline APIs, zero changes are required in `fare_analytics.py` or the REST API. The analytics engine queries the normalized ANSI SQL `fare_observations` table regardless of whether the rows were populated by sandbox connectors, live feeds, or official statistical surveys."
 
 ---
 
 ## 4. Honest Prototype Limitations & Future Work
 
-### Q9: "What are the limitations of what you have built today?"
+### Q13: "What are the limitations of what you have built today?"
 - **Answer**: "We are transparent about our current scope:
   1. **Route Coverage**: We focused our prototype pipeline on India's top 3 trunk routes: `DEL-BOM`, `DEL-BLR`, and `BOM-BLR`.
   2. **Advance Windows**: We sample 5 representative booking windows ($T+1, T+7, T+15, T+30, T+45$) rather than all 365 calendar days.
   3. **Schedule Updates**: Flight schedules currently represent a static baseline rather than live ATC radar feeds.
   The architecture is modular, and expanding to all 100+ Indian routes requires simply updating the route configuration."
+
+
 
 ---
 

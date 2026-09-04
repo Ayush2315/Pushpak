@@ -1,7 +1,7 @@
 # PUSHPAK: Civil Aviation Intelligence Platform
 
 [![Status](https://img.shields.io/badge/SIH_2024-PUSHPAK-orange.svg)]()
-[![Milestone](https://img.shields.io/badge/Milestone-0A_Complete-green.svg)]()
+[![Milestone](https://img.shields.io/badge/Milestone-02_Complete-green.svg)]()
 [![License](https://img.shields.io/badge/License-Government_Open_Access-blue.svg)]()
 
 PUSHPAK is a government-oriented Civil Aviation Intelligence Platform engineered for the Smart India Hackathon (SIH). It delivers India's first high-frequency **Real-Time Airfare Price Index**, augmenting official statistical measures (such as the Consumer Price Index compiled by MoSPI) and providing civil aviation authorities (DGCA, MoCA) with actionable market and route intelligence.
@@ -29,16 +29,16 @@ DATA SOURCES (Permitted APIs / Registry / Math Yield Engine)
                     ↓
         PERSISTENCE (SQLite with WAL Journaling)
                     ↓
-      PUSHPAK ANALYTICS ENGINE (Jevons Formula)
+       PUSHPAK ANALYTICS ENGINE (Jevons Formula & Volatility CV)
                     ↓
-          VERSIONED REST API (FastAPI /api/v1)
+           VERSIONED REST API (FastAPI /api/v1)
                     ↓
-      GOVERNMENT DASHBOARD (React + Dynamic Sidebar)
+       GOVERNMENT DASHBOARD (React + Dynamic Sidebar)
 ```
 
 ---
 
-## 🚀 Quickstart (Milestone 0A)
+## 🚀 Quickstart
 
 ### 1. Prerequisites
 - Python 3.10+
@@ -54,16 +54,24 @@ pip install -r backend/requirements.txt
 python -m pytest -v
 ```
 
-### 4. Execute the Airfare Data Ingestion Pipeline
+### 4. Execute Ingestion Pipelines (If Re-initializing)
 ```bash
+# Ingest deterministic airfare observations (M0A)
 python -m backend.ingestion.pipeline
+
+# Ingest domestic flight registry records (M0B)
+python -m backend.ingestion.pdf_registry_parser
 ```
 
-Upon execution, the pipeline:
-- Initializes SQLite in high-performance **WAL (Write-Ahead Logging)** mode (`backend/data/pushpak.db`).
-- Ingests **135 validated airfare observations** across India's top 3 trunk routes: `DEL-BOM`, `DEL-BLR`, and `BOM-BLR`.
-- Captures standard advance booking windows: `T+1`, `T+7`, `T+15`, `T+30`, and `T+45`.
-- Tags all records transparently with `data_mode = demo_simulation` and `environment = offline`.
+### 5. Launch the FastAPI Backend Server
+```bash
+uvicorn backend.main:app --reload --port 8000
+```
+
+Access the interactive API documentation:
+- **Swagger UI**: [http://localhost:8000/docs](http://localhost:8000/docs)
+- **ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+- **Health Check**: [http://localhost:8000/health](http://localhost:8000/health)
 
 ---
 
@@ -73,10 +81,10 @@ Upon execution, the pipeline:
 | :--- | :--- | :---: | :--- |
 | **M0A** | **Data Acquisition Foundation** | **COMPLETE** | Pluggable connectors, Pydantic schema, SQLite WAL persistence, provenance audit trail. |
 | **M0B** | **Flight Registry & Network** | **COMPLETE** | Ingested domestic flight registry (50,000 active sample of 300,153 records in `flightsdata.pdf`), route network view, carrier analytics. |
-| **M1** | **Backend API Layer** | *Next* | FastAPI `/api/v1/` endpoints for health, routes, observations, and swagger docs. |
-| **M2** | **Government Navigation Shell** | *Planned* | Two-tier layout: Top navigation controlling dynamic, context-aware sidebars. |
-| **M3** | **PUSHPAK Index Engine** | *Planned* | Jevons Geometric Mean calculation, Core Index, and Z-score spike alerts. |
-| **M4** | **Market Intelligence** | *Planned* | Lead-time yield curves, airline price dispersion, and monopoly index. |
+| **M1** | **Backend API Layer** | **COMPLETE** | FastAPI `/api/v1/` endpoints for health, flights, routes, analytics, fares, provenance, CORS, and Swagger docs. |
+| **M2** | **Intelligence & Fare Analytics** | **COMPLETE** | Volatility classification ($CV$), lead-time yield curves ($T+1$ to $T+45$), inter-carrier comparison, deterministic insights. |
+| **M3** | **Government Navigation Shell** | *Next* | Two-tier layout: Top navigation controlling dynamic, context-aware sidebars. |
+| **M4** | **PUSHPAK Index Engine** | *Planned* | Jevons Geometric Mean calculation, Core Index, and Z-score spike alerts. |
 | **M5** | **Policy Lab & CPI Sandbox** | *Planned* | Interactive MoSPI CPI Transport sensitivity simulator. |
 | **M6** | **Governance & API Explorer** | *Planned* | Provenance inspector and live API test console. |
 | **M7** | **Jury Readiness & Localization** | *Planned* | Bilingual English ↔ Hindi support and offline presentation fail-safes. |
@@ -87,8 +95,14 @@ Upon execution, the pipeline:
 
 - [Project Overview](docs/PROJECT_OVERVIEW.md)
 - [Technology Stack](docs/TECH_STACK.md)
+- [API Developer Guide](docs/API_GUIDE.md)
+- [Fare Intelligence & Volatility Engine](docs/FARE_INTELLIGENCE.md)
 - [Data Strategy & Taxonomy](docs/DATA_STRATEGY.md)
 - [Data Provenance & Audit Trail](docs/DATA_PROVENANCE.md)
+- [Flight Registry Architecture](docs/FLIGHT_REGISTRY.md)
 - [Team Learning & Defense Guide](docs/TEAM_LEARNING_GUIDE.md)
 - [Jury Preparation & FAQ](docs/JURY_PREPARATION.md)
 - [Milestone 0A Completion Report](docs/milestones/MILESTONE_00A.md)
+- [Milestone 0B Completion Report](docs/milestones/MILESTONE_00B.md)
+- [Milestone 1 Completion Report](docs/milestones/MILESTONE_01.md)
+- [Milestone 2 Completion Report](docs/milestones/MILESTONE_02.md)
