@@ -6,6 +6,7 @@ from backend.api.routes.analytics import router as analytics_router
 from backend.api.routes.fares import router as fares_router
 from backend.api.routes.provenance import router as provenance_router
 from backend.api.routes.intelligence import router as intelligence_router
+from backend.api.routes.policy import router as policy_router
 
 api_v1_router = APIRouter(prefix="/api/v1")
 
@@ -17,6 +18,7 @@ api_v1_router.include_router(analytics_router)
 api_v1_router.include_router(fares_router)
 api_v1_router.include_router(provenance_router)
 api_v1_router.include_router(intelligence_router)
+api_v1_router.include_router(policy_router)
 
 __all__ = ["api_v1_router"]
 

@@ -197,3 +197,58 @@ class NetworkFareSummaryResponse(BaseModel):
         description="Official transparency notice"
     )
 
+# ====================================================================
+# MILESTONE 3: DECISION SUPPORT & POLICY INTELLIGENCE SCHEMAS
+# ====================================================================
+
+class PolicyPriorityClassification(BaseModel):
+    priority_category: str = Field(..., description="HIGH_ATTENTION, MONITOR, or LOW_ATTENTION")
+    priority_score: int = Field(..., description="Deterministic priority score (1-3)")
+    primary_trigger: str = Field(..., description="Main numerical metric triggering this classification")
+    thresholds_applied: Dict[str, Any] = Field(..., description="Transparent threshold dictionary applied")
+    classification_notice: str = Field(
+        default="PUSHPAK Analytical Priority Classification (Internal heuristic metric for prototype evaluation, NOT an official DGCA/MoCA statutory classification or regulatory mandate).",
+        description="Statutory non-regulatory disclaimer"
+    )
+
+class PolicyFlag(BaseModel):
+    flag_code: str = Field(..., description="HIGH_VOLATILITY, HIGH_WALKUP_PREMIUM, LIMITED_OBSERVED_COMPETITION, SIGNIFICANT_PRICE_SPREAD")
+    severity: str = Field(..., description="HIGH, MEDIUM, LOW, or INFO")
+    route_code: str = Field(..., description="IATA route corridor (e.g. DEL-BOM)")
+    title: str = Field(..., description="Human-readable policy flag title")
+    explanation: str = Field(..., description="Quantitative, numbers-traceable policy explanation")
+    underlying_metrics: Dict[str, Any] = Field(..., description="Numerical metrics supporting the flag")
+    data_disclaimer: str = Field(..., description="Provenance transparency disclaimer")
+
+class RoutePolicyAssessment(BaseModel):
+    route_code: str
+    source_city: str
+    destination_city: str
+    priority_classification: PolicyPriorityClassification
+    volatility_cv: float
+    walkup_premium_pct: Optional[float] = None
+    carrier_price_spread: Optional[float] = None
+    observed_flight_records: int
+    observed_airlines_count: int
+    non_stop_ratio: float
+    flags: List[PolicyFlag]
+    provenance: Dict[str, Any]
+
+class NetworkPolicyOverview(BaseModel):
+    total_monitored_routes: int
+    priority_distribution: Dict[str, int]
+    total_active_flags: int
+    flags_by_severity: Dict[str, int]
+    highest_volatility_routes: List[Dict[str, Any]]
+    highest_walkup_premium_routes: List[Dict[str, Any]]
+    competition_summary: Dict[str, Any]
+    data_clarification: str = Field(
+        default="Network policy metrics reflect observed historical dataset records and prototype fare observations, not active daily air traffic control schedules or live bookings.",
+        description="Official transparency notice"
+    )
+
+class PolicyFlagsResponse(BaseModel):
+    total_flags: int
+    filters_applied: Dict[str, Any]
+    flags: List[PolicyFlag]
+

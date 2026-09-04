@@ -83,10 +83,10 @@ Access the interactive API documentation:
 | **M0B** | **Flight Registry & Network** | **COMPLETE** | Ingested domestic flight registry (50,000 active sample of 300,153 records in `flightsdata.pdf`), route network view, carrier analytics. |
 | **M1** | **Backend API Layer** | **COMPLETE** | FastAPI `/api/v1/` endpoints for health, flights, routes, analytics, fares, provenance, CORS, and Swagger docs. |
 | **M2** | **Intelligence & Fare Analytics** | **COMPLETE** | Volatility classification ($CV$), lead-time yield curves ($T+1$ to $T+45$), inter-carrier comparison, deterministic insights. |
-| **M3** | **Government Navigation Shell** | *Next* | Two-tier layout: Top navigation controlling dynamic, context-aware sidebars. |
-| **M4** | **PUSHPAK Index Engine** | *Planned* | Jevons Geometric Mean calculation, Core Index, and Z-score spike alerts. |
-| **M5** | **Policy Lab & CPI Sandbox** | *Planned* | Interactive MoSPI CPI Transport sensitivity simulator. |
-| **M6** | **Governance & API Explorer** | *Planned* | Provenance inspector and live API test console. |
+| **M3** | **Decision Support & Policy Intelligence** | **COMPLETE** | Quantitative priority classification (`HIGH_ATTENTION`, `MONITOR`, `LOW_ATTENTION`), numbers-traceable policy flags, macro network overview. |
+| **M4** | **Government Navigation Shell & UI** | *Next* | Two-tier layout: Top navigation controlling dynamic, context-aware sidebars. |
+| **M5** | **PUSHPAK Index Engine** | *Planned* | Jevons Geometric Mean calculation, Core Index, and Z-score spike alerts. |
+| **M6** | **Policy Lab & CPI Sandbox** | *Planned* | Interactive MoSPI CPI Transport sensitivity simulator. |
 | **M7** | **Jury Readiness & Localization** | *Planned* | Bilingual English ↔ Hindi support and offline presentation fail-safes. |
 
 ---
@@ -97,6 +97,7 @@ Access the interactive API documentation:
 - [Technology Stack](docs/TECH_STACK.md)
 - [API Developer Guide](docs/API_GUIDE.md)
 - [Fare Intelligence & Volatility Engine](docs/FARE_INTELLIGENCE.md)
+- [Policy Intelligence & Decision Support](docs/POLICY_INTELLIGENCE.md)
 - [Data Strategy & Taxonomy](docs/DATA_STRATEGY.md)
 - [Data Provenance & Audit Trail](docs/DATA_PROVENANCE.md)
 - [Flight Registry Architecture](docs/FLIGHT_REGISTRY.md)
@@ -106,3 +107,4 @@ Access the interactive API documentation:
 - [Milestone 0B Completion Report](docs/milestones/MILESTONE_00B.md)
 - [Milestone 1 Completion Report](docs/milestones/MILESTONE_01.md)
 - [Milestone 2 Completion Report](docs/milestones/MILESTONE_02.md)
+- [Milestone 3 Completion Report](docs/milestones/MILESTONE_03.md)
