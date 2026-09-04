@@ -75,7 +75,7 @@ export default function Methodology() {
             <p className="card-subtitle">
               {isHi 
                 ? 'मूल्यांकन हेतु मील के पत्थर M0A से M4 को जोड़ने वाला पूर्ण आर्किटेक्चरल प्रवाह'
-                : 'End-to-end architectural flow connecting Milestones M0A through M4 for jury and government evaluation'}
+                : 'End-to-end architectural flow connecting Milestones M0A through M4 for institutional and government evaluation'}
             </p>
           </div>
         </div>

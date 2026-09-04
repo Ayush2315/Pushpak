@@ -7,12 +7,14 @@
 export const FAQ_CATEGORIES = [
   { id: 'all', name: 'All Categories', nameHi: 'सभी विषय' },
   { id: 'basics', name: 'About PUSHPAK', nameHi: 'पुष्पक के बारे में' },
+  { id: 'liveData', name: 'Live Data & Acquisition', nameHi: 'लाइव डेटा एवं अधिग्रहण' },
   { id: 'priceIndex', name: 'Price Index', nameHi: 'मूल्य सूचकांक' },
   { id: 'fareIntelligence', name: 'Airfare Intelligence', nameHi: 'किराया आसूचना' },
   { id: 'policyIntelligence', name: 'Policy Intelligence', nameHi: 'नीति आसूचना' },
   { id: 'routeNetwork', name: 'Route Network', nameHi: 'मार्ग संजाल' },
   { id: 'transparency', name: 'Data Transparency & Provenance', nameHi: 'डेटा पारदर्शिता एवं उद्गम' },
   { id: 'methodology', name: 'Methodology & CPI', nameHi: 'कार्यप्रणाली एवं CPI' },
+  { id: 'backtesting', name: 'Historical Validation & Backtesting', nameHi: 'ऐतिहासिक सत्यापन एवं बैकटेस्टिंग' },
 ];
 
 export const knowledgeBase = [
@@ -533,5 +535,227 @@ export const knowledgeBase = [
     whyMattersHi: 'मुद्रास्फीति के दौर में पारंपरिक मासिक नमूने बाजार की वास्तविकताओं से पिछड़ जाते हैं। एक एल्गोरिथम सूचकांक परिवहन उपसमूह के लिए प्रारंभिक चेतावनी संकेत प्रदान करता है।',
     howCalculatedEn: 'By maintaining fixed-basket Laspeyres aggregation weighted by annual passenger traffic, PUSHPAK mirrors international CPI standards established by the IMF and ILO.',
     howCalculatedHi: 'वार्षिक यात्री यातायात द्वारा भारित निश्चित-टोकरी लास्पेरेस एकत्रीकरण का उपयोग करके, पुष्पक आईएमएफ और आईएलओ द्वारा स्थापित अंतरराष्ट्रीय सीपीआई मानकों का पालन करता है।'
+  },
+
+  // =========================================================================
+  // CATEGORY H: LIVE DATA & ACQUISITION PIPELINE (MILESTONE 7)
+  // =========================================================================
+  {
+    id: 'what-does-acquisition-pipeline-do',
+    category: 'liveData',
+    questionEn: "What does PUSHPAK's acquisition pipeline do?",
+    questionHi: 'पुष्पक की डेटा अधिग्रहण पाइपलाइन क्या करती है?',
+    simpleEn: "PUSHPAK's 7-stage acquisition pipeline programmatically connects to approved civil aviation telemetry sources, extracts raw fare and flight observations, validates fields, normalizes data, deterministically deduplicates observations, commits verified records to SQLite, and seals the entire run with a SHA-256 cryptographic provenance hash.",
+    simpleHi: 'पुष्पक की 7-चरणीय अधिग्रहण पाइपलाइन स्वीकृत नागर विमानन स्रोतों से जुड़ती है, कच्चे किराया एवं उड़ान रिकॉर्ड निष्कर्षित करती है, स्कीमा सत्यापन करती है, डेटा सामान्यीकरण करती है, डुप्लिकेट हटाती है, SQLite में सुरक्षित रूप से दर्ज करती है और SHA-256 हैश द्वारा पूरे रन का उद्गम सील करती है।',
+    whyMattersEn: 'Official statistical bodies require verifiable, auditable pipelines rather than black-box scraped data. Every stage produces a verifiable count and rejects anomalies transparently before influencing the analytical price index.',
+    whyMattersHi: 'आधिकारिक सांख्यिकी निकायों को बिना प्रमाण वाले डेटा के बजाय सत्यापन योग्य, ऑडिट योग्य पाइपलाइन की आवश्यकता होती है। प्रत्येक चरण पारदर्शी गणना करता है और मूल्य सूचकांक को प्रभावित करने से पहले विसंगतियों को अस्वीकार करता है।',
+    howCalculatedEn: 'Stage 1 (Source Connect) → Stage 2 (Extract) → Stage 3 (Schema & Range Validation) → Stage 4 (Code Normalization) → Stage 5 (Composite-Key Deduplication) → Stage 6 (Database Storage) → Stage 7 (Deterministic SHA-256 Provenance).',
+    howCalculatedHi: 'चरण 1 (कनेक्शन) → चरण 2 (निष्कर्षण) → चरण 3 (सत्यापन) → चरण 4 (सफाई) → चरण 5 (डुप्लिकेट निष्कासन) → चरण 6 (डेटाबेस भंडारण) → चरण 7 (क्रिप्टोग्राफिक उद्गम हैश)।',
+    actions: [
+      {
+        id: 'view-methodology',
+        action: 'methodology',
+        label: 'View Pipeline Methodology',
+        labelHi: 'पाइपलाइन कार्यप्रणाली देखें',
+        icon: 'Calculator'
+      }
+    ]
+  },
+  {
+    id: 'live-vs-demo-data',
+    category: 'liveData',
+    questionEn: 'What is the difference between live fetched data and demonstration data?',
+    questionHi: 'लाइव प्राप्त डेटा और डिमॉन्स्ट्रेशन डेटा में क्या अंतर है?',
+    simpleEn: 'Demonstration data consists of carefully calibrated baseline distributions used to simulate full-year corridor behaviors, whereas live fetched data represents actual, real-time records acquired from genuine open civil aviation APIs during the active user session.',
+    simpleHi: 'डिमॉन्स्ट्रेशन डेटा में पूर्ण-वर्षीय गलियारा व्यवहार का अनुकरण करने हेतु कैलिब्रेटेड बेसलाइन वितरण शामिल हैं, जबकि लाइव प्राप्त डेटा सक्रिय उपयोगकर्ता सत्र के दौरान वास्तविक खुले विमानन एपीआई से प्राप्त वास्तविक समय के रिकॉर्ड का प्रतिनिधित्व करता है।',
+    whyMattersEn: 'Technical honesty is a fundamental governance principle of PUSHPAK. The platform visually distinguishes genuine live fetches with green badges (🟢 LIVE FETCHED DATA) and historical baseline simulations with blue badges (🔵 DEMONSTRATION DATA) to prevent misleading stakeholders.',
+    whyMattersHi: 'तकनीकी ईमानदारी पुष्पक का एक मौलिक सुशासन सिद्धांत है। मंच स्टेकहोल्डरों को गुमराह करने से रोकने के लिए हरे बैज (🟢 लाइव प्राप्त डेटा) और नीले बैज (🔵 डिमॉन्स्ट्रेशन डेटा) के साथ स्पष्ट दृश्य अंतर बनाए रखता है।',
+    howCalculatedEn: 'Live fetches populate the `live_acquisition_runs` and `live_fare_observations` tables with immediate system timestamps and API source identifiers.',
+    howCalculatedHi: 'लाइव फेच तत्काल सिस्टम टाइमस्टैम्प और एपीआई स्रोत पहचानकर्ताओं के साथ डेटाबेस तालिकाओं में दर्ज होते हैं।'
+  },
+  {
+    id: 'how-validation-works',
+    category: 'liveData',
+    questionEn: 'How does validation work?',
+    questionHi: 'डेटा सत्यापन कैसे काम करता है?',
+    simpleEn: 'Stage 3 of the pipeline applies strict rule-based schema and domain checks to every incoming record before acceptance.',
+    simpleHi: 'पाइपलाइन का चरण 3 स्वीकृति से पहले प्रत्येक आने वाले रिकॉर्ड पर सख्त नियम-आधारित स्कीमा और डोमेन जांच लागू करता है।',
+    whyMattersEn: 'Unchecked null values, negative fares, inverted origin-destination pairs, or unrealistic advance booking windows would corrupt national inflation proxies.',
+    whyMattersHi: 'अनियंत्रित रिक्त मान, नकारात्मक किराए, या अमान्य अग्रिम बुकिंग विंडो राष्ट्रीय मुद्रास्फीति संकेतकों को दूषित कर सकते हैं।',
+    howCalculatedEn: 'Validation checks: (1) valid IATA airport codes, (2) origin != destination, (3) total_fare > 0 and numeric, (4) advance_purchase_window in [1, 7, 15, 30, 45], (5) ISO 8601 observation timestamp.',
+    howCalculatedHi: 'सत्यापन जांच: (1) वैध IATA हवाई अड्डा कोड, (2) प्रस्थान != आगमन, (3) कुल किराया > 0, (4) अग्रिम बुकिंग विंडो [1, 7, 15, 30, 45] में, (5) मान्य ISO 8601 टाइमस्टैम्प।'
+  },
+  {
+    id: 'what-is-data-deduplication',
+    category: 'liveData',
+    questionEn: 'What is data deduplication?',
+    questionHi: 'डेटा डिडुप्लिकेशन (डुप्लिकेट निष्कासन) क्या है?',
+    simpleEn: 'Data deduplication identifies and eliminates repeated observations of the same flight or fare quote captured during rapid successive acquisition queries.',
+    simpleHi: 'डेटा डिडुप्लिकेशन तेजी से बार-बार किए गए अधिग्रहण प्रश्नों के दौरान प्राप्त समान उड़ान या किराए के उद्धरणों की पहचान करता है और उन्हें हटाता है।',
+    whyMattersEn: 'Without deduplication, querying an API multiple times within an hour would overweight identical fare quotes, skewing mean prices and artificial volume metrics.',
+    whyMattersHi: 'डिडुप्लिकेशन के बिना, एक ही घंटे में कई बार एपीआई क्वेरी करने से समान किराए का भार बढ़ जाएगा, जिससे औसत मूल्य और वॉल्यूम मीट्रिक विकृत हो जाएंगे।',
+    howCalculatedEn: 'Deterministic composite key: `hash(route_code + carrier + advance_purchase_window + observation_date + fare_class)`. Only the first unique observation within a window is preserved.',
+    howCalculatedHi: 'निर्धारक समग्र कुंजी: `मार्ग + वाहक + अग्रिम विंडो + अवलोकन तिथि + श्रेणी`। एक विंडो के भीतर केवल पहला विशिष्ट अवलोकन सुरक्षित रखा जाता है।'
+  },
+  {
+    id: 'why-is-provenance-important',
+    category: 'liveData',
+    questionEn: 'Why is provenance important?',
+    questionHi: 'डेटा उद्गम (Provenance) क्यों महत्वपूर्ण है?',
+    simpleEn: 'Data provenance provides an unbroken, cryptographic chain of custody documenting exactly where data came from, when it was acquired, how many records were accepted or rejected, and its cryptographic integrity signature.',
+    simpleHi: 'डेटा उद्गम एक अटूट, क्रिप्टोग्राफिक श्रृंखला प्रदान करता है जो ठीक यह प्रमाणित करता है कि डेटा कहाँ से आया, कब प्राप्त किया गया, कितने रिकॉर्ड स्वीकृत या अस्वीकृत हुए, और उसका सुरक्षा हस्ताक्षर क्या है।',
+    whyMattersEn: 'For central banks (RBI) and national statistical agencies (MoSPI), economic indices cannot rely on unverified assertions. Provenance allows independent auditors to reproduce and verify the calculation.',
+    whyMattersHi: 'केंद्रीय बैंक (RBI) और राष्ट्रीय सांख्यिकी एजेंसियों (MoSPI) के लिए आर्थिक सूचकांक असत्यापित दावों पर निर्भर नहीं हो सकते। उद्गम स्वतंत्र लेखा परीक्षकों को गणना की पुष्टि करने की अनुमति देता है।',
+    howCalculatedEn: 'Every acquisition run records: `run_id`, `source_name`, `fetch_timestamp`, `records_retrieved`, `records_rejected`, `duplicates_removed`, `records_accepted`, and `provenance_hash`.',
+    howCalculatedHi: 'प्रत्येक अधिग्रहण रन में रन आईडी, स्रोत का नाम, टाइमस्टैम्प, प्राप्त/अस्वीकृत/डुप्लिकेट/स्वीकृत रिकॉर्ड और उद्गम हैश दर्ज होता है।'
+  },
+  {
+    id: 'what-is-sha256-integrity-hash',
+    category: 'liveData',
+    questionEn: 'What is a SHA-256 integrity hash?',
+    questionHi: 'SHA-256 अखंडता हैश क्या है?',
+    simpleEn: 'A SHA-256 integrity hash is a deterministic 64-character hexadecimal fingerprint generated from the exact bytes of the accepted flight fare records and run metadata.',
+    simpleHi: 'SHA-256 अखंडता हैश एक निर्धारक 64-वर्ण हेक्साडेसिमल फिंगरप्रिंट है जो स्वीकृत उड़ान किराए के रिकॉर्ड और रन मेटाडेटा के सटीक बाइट्स से उत्पन्न होता है।',
+    whyMattersEn: 'Even a one-cent or one-character alteration in the stored data produces a completely different hash, making tampering immediately detectable.',
+    whyMattersHi: 'संग्रहीत डेटा में एक पैसे या एक अक्षर का भी परिवर्तन पूरी तरह से भिन्न हैश उत्पन्न करता है, जिससे किसी भी छेड़छाड़ का तुरंत पता चल जाता है।',
+    howCalculatedEn: 'SHA-256(run_id + source + timestamp + accepted_count + concatenated_observation_tokens). The resulting 256-bit digest is stored alongside the run record.',
+    howCalculatedHi: 'SHA-256(रन आईडी + स्रोत + टाइमस्टैम्प + स्वीकृत संख्या + अवलोकनों का सार)। परिणामी 256-बिट डाइजेस्ट रन रिकॉर्ड के साथ संग्रहीत होता है।'
+  },
+  {
+    id: 'multiple-sources-scraping',
+    category: 'liveData',
+    questionEn: 'Does PUSHPAK currently scrape multiple sources?',
+    questionHi: 'क्या पुष्पक वर्तमान में कई स्रोतों से डेटा स्क्रैप करता है?',
+    simpleEn: 'No. The prototype demonstrates the standardized acquisition pipeline with the implemented connector architecture. Additional approved sources can be added through future connectors.',
+    simpleHi: 'नहीं। यह प्रोटोटाइप कार्यान्वित कनेक्टर आर्किटेक्चर के साथ मानकीकृत अधिग्रहण पाइपलाइन का प्रदर्शन करता है। भविष्य के कनेक्टर्स के माध्यम से अतिरिक्त स्वीकृत स्रोत जोड़े जा सकते हैं।',
+    whyMattersEn: 'Honest engineering and regulatory compliance: PUSHPAK does not bypass CAPTCHAs, violate airline terms of service, or simulate fake airline connections. It uses ethical, rate-limited open telemetry APIs.',
+    whyMattersHi: 'ईमानदार इंजीनियरिंग और विनियामक अनुपालन: पुष्पक कैप्चा को बायपास नहीं करता, एयरलाइन सेवा शर्तों का उल्लंघन नहीं करता, या नकली एयरलाइन कनेक्शन का नाटक नहीं करता। यह नैतिक, दर-सीमित खुले एपीआई का उपयोग करता है।',
+    howCalculatedEn: 'The system defines an abstract `BaseConnector` class that enforces uniform interfaces (`connect()`, `extract()`, `validate()`, `clean()`, `deduplicate()`). Any future source adheres to this contract.',
+    howCalculatedHi: 'प्रणाली एक अमूर्त BaseConnector वर्ग को परिभाषित करती है जो समान इंटरफेस लागू करता है। कोई भी भावी स्रोत इसी अनुबंध का पालन करेगा।'
+  },
+  {
+    id: 'how-government-consumes-pushpak',
+    category: 'liveData',
+    questionEn: 'How can government systems consume PUSHPAK?',
+    questionHi: 'सरकारी प्रणालियाँ पुष्पक का उपभोग कैसे कर सकती हैं?',
+    simpleEn: 'Government and institutional research systems consume PUSHPAK programmatically via the dedicated `/api/v1/government/` REST API namespace.',
+    simpleHi: 'सरकारी और संस्थागत अनुसंधान प्रणालियाँ समर्पित `/api/v1/government/` REST API नेमस्पेस के माध्यम से प्रोग्रामेटिक रूप से पुष्पक का उपभोग करती हैं।',
+    whyMattersEn: 'The interactive frontend dashboard is only one presentation client. Central statistical bodies (MoSPI), aviation regulators (DGCA), and central banks (RBI) require programmatic machine-to-machine JSON feeds for macro models.',
+    whyMattersHi: 'इंटरैक्टिव डैशबोर्ड केवल एक प्रस्तुति क्लाइंट है। केंद्रीय सांख्यिकी निकायों (MoSPI), विमानन नियामकों (DGCA), और रिज़र्व बैंक (RBI) को मैक्रो मॉडल के लिए मशीन-टू-मशीन JSON फीड की आवश्यकता होती है।',
+    howCalculatedEn: 'Standard endpoints: `/api/v1/government/index/latest` (Headline/Core/Surge), `/summary` (Analytical breakdown), `/routes` (Basket details), `/provenance` (Audit trail), and `/data-status` (Dataset transparency).',
+    howCalculatedHi: 'मानक एंडपॉइंट्स: `/index/latest` (हेडलाइन/कोर/वृद्धि), `/summary` (विश्लेषणात्मक विवरण), `/routes` (बास्केट विवरण), `/provenance` (ऑडिट ट्रेल), और `/data-status` (डेटासेट पारदर्शिता)।',
+    actions: [
+      {
+        id: 'inspect-headline',
+        action: 'headline-index',
+        label: 'Inspect Headline Index API',
+        labelHi: 'हेडलाइन सूचकांक एपीआई देखें',
+        icon: 'TrendingUp'
+      }
+    ]
+  },
+  {
+    id: 'basket-vs-corridor-explorer',
+    category: 'liveData',
+    questionEn: 'What is the difference between the Representative Basket and National Corridor Explorer?',
+    questionHi: 'प्रतिनिधि बास्केट और राष्ट्रीय गलियारा एक्सप्लोरर में क्या अंतर है?',
+    simpleEn: 'The Representative Basket consists of 3 high-volume trunk routes (DEL-BOM, DEL-BLR, BOM-BLR) that strictly determine the PUSHPAK Price Index, whereas the National Corridor Explorer monitors the Top 10 domestic routes for broader network visibility without altering the index.',
+    simpleHi: 'प्रतिनिधि बास्केट में 3 उच्च-मात्रा वाले ट्रंक मार्ग (DEL-BOM, DEL-BLR, BOM-BLR) शामिल हैं जो पुष्पक मूल्य सूचकांक निर्धारित करते हैं, जबकि राष्ट्रीय गलियारा एक्सप्लोरर सूचकांक को बदले बिना व्यापक नेटवर्क दृश्यता हेतु शीर्ष 10 घरेलू मार्गों की निगरानी करता है।',
+    whyMattersEn: 'Index methodology requires a stable, fixed basket to maintain temporal continuity and prevent index drift. The corridor explorer enables exploratory supervisory analytics without violating Laspeyres price-index integrity.',
+    whyMattersHi: 'सूचकांक कार्यप्रणाली को समय की निरंतरता बनाए रखने और सूचकांक विचलन को रोकने के लिए एक स्थिर, निश्चित बास्केट की आवश्यकता होती है। गलियारा एक्सप्लोरर लास्पेरेस अखंडता का उल्लंघन किए बिना व्यापक पर्यवेक्षी विश्लेषण को सक्षम बनाता है।',
+    howCalculatedEn: 'Representative basket carries 100% of index weights (DEL-BOM: 42.5%, DEL-BLR: 32.5%, BOM-BLR: 25.0%). The remaining 7 corridors in the National Explorer carry 0% weight in the index.',
+    howCalculatedHi: 'प्रतिनिधि बास्केट सूचकांक का 100% भार वहन करती है। राष्ट्रीय एक्सप्लोरर में शेष 7 गलियारे सूचकांक में 0% भार वहन करते हैं।',
+    actions: [
+      {
+        id: 'inspect-corridor',
+        action: 'corridor',
+        routeCode: 'DEL-BOM',
+        label: 'Explore Trunk Corridor DEL-BOM',
+        labelHi: 'ट्रंक गलियारा DEL-BOM देखें',
+        icon: 'Plane'
+      }
+    ]
+  },
+  // =========================================================================
+  // CATEGORY I: HISTORICAL VALIDATION & BACKTESTING
+  // =========================================================================
+  {
+    id: 'backtest-what',
+    category: 'backtesting',
+    questionEn: 'What is historical backtesting in the context of a price index?',
+    questionHi: 'मूल्य सूचकांक में ऐतिहासिक बैकटेस्टिंग क्या है?',
+    simpleEn: 'Historical backtesting validates the price index methodology by applying it to accumulated past observations. For each historical day t, it computes I(t) = Σ(wᵢ × Rᵢ(t)) × 100 and verifies that the index behaves consistently with known market dynamics.',
+    simpleHi: 'ऐतिहासिक बैकटेस्टिंग मूल्य सूचकांक कार्यप्रणाली को संचित पिछले प्रेक्षणों पर लागू करके उसे सत्यापित करता है। प्रत्येक ऐतिहासिक दिवस t के लिए I(t) = Σ(wᵢ × Rᵢ(t)) × 100 की गणना करता है।',
+    whyMattersEn: 'Backtesting ensures the Laspeyres aggregation formula produces economically intuitive results: walk-up fares remain higher than advance-purchase fares, basket weights are stable, and the index responds proportionally to genuine fare movements.',
+    whyMattersHi: 'बैकटेस्टिंग सुनिश्चित करता है कि लास्पेरेस एकत्रीकरण सूत्र आर्थिक रूप से सहज परिणाम देता है: वॉक-अप किराए अग्रिम-खरीद किराए से अधिक बने रहते हैं, बास्केट भार स्थिर होते हैं।',
+    howCalculatedEn: 'Step 1: Daily fare collection via 9-stage pipeline → Step 2: Route-level price relatives Rᵢ(t) → Step 3: Weighted aggregation I(t) → Step 4: Statistical analysis of trajectory I(t₁), I(t₂), ..., I(tₙ).',
+    howCalculatedHi: 'चरण 1: 9-चरणीय पाइपलाइन से दैनिक किराया संग्रह → चरण 2: मार्ग-स्तरीय मूल्य सापेक्ष Rᵢ(t) → चरण 3: भारित एकत्रीकरण I(t) → चरण 4: प्रक्षेप पथ का सांख्यिकीय विश्लेषण।',
+    actions: []
+  },
+  {
+    id: 'backtest-honest',
+    category: 'backtesting',
+    questionEn: 'Does PUSHPAK have a 30-day backtest? (Honest Answer)',
+    questionHi: 'क्या पुष्पक में 30-दिवसीय बैकटेस्ट है? (ईमानदार उत्तर)',
+    simpleEn: 'No, not yet. PUSHPAK is architecturally ready to run daily backtests but has not yet accumulated 30 consecutive days of real fare observations. The system does NOT fabricate fake historical backtest data.',
+    simpleHi: 'अभी नहीं। पुष्पक वास्तुशिल्प रूप से दैनिक बैकटेस्ट चलाने के लिए तैयार है लेकिन अभी तक 30 लगातार दिनों का वास्तविक किराया डेटा संचित नहीं हुआ है। सिस्टम नकली ऐतिहासिक बैकटेस्ट डेटा नहीं बनाता।',
+    whyMattersEn: 'Data honesty is a core principle. Fabricating a fake backtest trajectory would undermine institutional credibility. The acquisition pipeline can be scheduled for daily cron execution, and genuine backtesting will emerge organically as observations accumulate.',
+    whyMattersHi: 'डेटा ईमानदारी एक मूल सिद्धांत है। नकली बैकटेस्ट बनाना संस्थागत विश्वसनीयता को कमजोर करेगा। अधिग्रहण पाइपलाइन को दैनिक क्रॉन निष्पादन हेतु शेड्यूल किया जा सकता है।',
+    actions: []
+  },
+  {
+    id: 'backtest-validation-criteria',
+    category: 'backtesting',
+    questionEn: 'What validation criteria would a genuine backtest verify?',
+    questionHi: 'एक वास्तविक बैकटेस्ट कौन से सत्यापन मापदंडों की पुष्टि करेगा?',
+    simpleEn: 'Five key criteria: (1) Base period index I(0) = 100.00 exactly; (2) Walk-up surge spread: Headline > Core consistently; (3) Advance window monotonicity: T+1 > T+7 > T+15 > T+30 > T+45 fares; (4) Basket weight stability: Σwᵢ = 1.0000; (5) SHA-256 hash chain integrity across all daily runs.',
+    simpleHi: 'पांच मुख्य मापदंड: (1) आधार अवधि सूचकांक I(0) = 100.00; (2) वॉक-अप सर्ज: हेडलाइन > कोर; (3) अग्रिम अवधि एकरूपता: T+1 > T+7 > T+15 किराया; (4) बास्केट भार: Σwᵢ = 1.0000; (5) SHA-256 हैश चेन अखंडता।',
+    whyMattersEn: 'These criteria mirror the validation checks that MoSPI, RBI, and ILO apply when evaluating consumer price indices. Meeting them demonstrates that PUSHPAK produces economically meaningful, internally consistent output.',
+    whyMattersHi: 'ये मापदंड उन सत्यापन जांचों को प्रतिबिंबित करते हैं जो MoSPI, RBI और ILO उपभोक्ता मूल्य सूचकांकों का मूल्यांकन करते समय लागू करते हैं।',
+    actions: []
+  },
+  {
+    id: 'backtest-architecture',
+    category: 'backtesting',
+    questionEn: 'How is PUSHPAK architecturally ready for continuous backtesting?',
+    questionHi: 'पुष्पक निरंतर बैकटेस्टिंग के लिए वास्तुशिल्प रूप से कैसे तैयार है?',
+    simpleEn: 'The 9-stage acquisition pipeline can be invoked programmatically via the /api/v1/acquisition/run endpoint. Each execution produces timestamped, deduplicated, SHA-256 hashed observations stored in SQLite. The price index engine can then compute I(t) against any date-filtered subset.',
+    simpleHi: 'अधिग्रहण पाइपलाइन को /api/v1/acquisition/run एंडपॉइंट के माध्यम से प्रोग्रामेटिक रूप से चलाया जा सकता है। प्रत्येक निष्पादन समय-मोहर वाले, डी-डुप्लीकेटेड, SHA-256 हैश प्रेक्षण उत्पन्न करता है।',
+    howCalculatedEn: 'Schedule → Acquisition Pipeline → Clean Observations (airfare_observations table) → Date-filtered Price Relatives → Daily Index Value → Append to Time Series',
+    howCalculatedHi: 'शेड्यूल → अधिग्रहण पाइपलाइन → स्वच्छ प्रेक्षण (airfare_observations तालिका) → तिथि-फ़िल्टर मूल्य सापेक्ष → दैनिक सूचकांक → समय श्रृंखला में जोड़ें',
+    actions: []
+  },
+  {
+    id: 'backtest-dedup-importance',
+    category: 'backtesting',
+    questionEn: 'Why is deduplication critical for historical backtesting integrity?',
+    questionHi: 'ऐतिहासिक बैकटेस्टिंग अखंडता के लिए डुप्लीकेशन निष्कासन क्यों महत्वपूर्ण है?',
+    simpleEn: 'Without deduplication, if identical fare quotes appear multiple times in a daily snapshot, the route-level geometric mean shifts artificially. Over 30 days, even small daily biases compound into significant index drift, producing unreliable backtest trajectories.',
+    simpleHi: 'डुप्लीकेशन निष्कासन के बिना, यदि समान किराया उद्धरण एक दैनिक स्नैपशॉट में कई बार दिखाई देते हैं, तो मार्ग-स्तरीय ज्यामितीय माध्य कृत्रिम रूप से विचलित होता है। 30 दिनों में, छोटे दैनिक विचलन भी सूचकांक विचलन में संयुक्त हो जाते हैं।',
+    howCalculatedEn: 'Deduplication uses a deterministic composite key: carrier|origin|destination|departure_date|advance_purchase_window|fare_class|total_fare. Identical signatures within a single acquisition run are flagged as duplicates and excluded from index calculations.',
+    howCalculatedHi: 'डुप्लीकेशन निर्धारक समग्र कुंजी का उपयोग करता है: carrier|origin|destination|departure_date|advance_purchase_window|fare_class|total_fare। एक ही अधिग्रहण रन में समान हस्ताक्षर डुप्लिकेट के रूप में चिह्नित किए जाते हैं।',
+    actions: []
+  },
+  {
+    id: 'backtest-provenance',
+    category: 'backtesting',
+    questionEn: 'How does SHA-256 provenance support backtest auditability?',
+    questionHi: 'SHA-256 स्रोत अखंडता बैकटेस्ट ऑडिटेबिलिटी का कैसे समर्थन करती है?',
+    simpleEn: 'Each daily acquisition run produces a unique SHA-256 hash computed over the canonical sorted observations and run metadata. This creates an immutable audit chain: if any observation were modified retroactively, the hash would change, and the tampering would be immediately detectable.',
+    simpleHi: 'प्रत्येक दैनिक अधिग्रहण रन सैद्धांतिक क्रमबद्ध प्रेक्षणों और रन मेटाडेटा पर गणना किया गया एक अद्वितीय SHA-256 हैश उत्पन्न करता है। यदि किसी प्रेक्षण को पूर्वव्यापी रूप से संशोधित किया जाता है, तो हैश बदल जाएगा।',
+    whyMattersEn: 'For institutional consumers (MoSPI, RBI), cryptographic provenance is essential. It provides verifiable proof that backtest trajectories have not been fabricated or altered after the fact.',
+    whyMattersHi: 'संस्थागत उपभोक्ताओं (MoSPI, RBI) के लिए, क्रिप्टोग्राफ़िक स्रोत अखंडता आवश्यक है। यह सत्यापन योग्य प्रमाण प्रदान करती है कि बैकटेस्ट प्रक्षेप पथ तथ्य के बाद मनगढ़ंत या परिवर्तित नहीं किए गए हैं।',
+    actions: []
+  },
+  {
+    id: 'backtest-capability-map',
+    category: 'backtesting',
+    questionEn: 'What is the PUSHPAK Prototype Capability Map?',
+    questionHi: 'पुष्पक प्रोटोटाइप क्षमता मानचित्र क्या है?',
+    simpleEn: 'The Capability Map honestly compares Problem Statement requirements against actual PUSHPAK implementations. It shows which capabilities are fully demonstrated (price index, 9-stage pipeline, deduplication), which are architecture-ready (daily cron scheduling, NDC airline connectors), and which require production deployment (true 30-day backtest, live GDS integration).',
+    simpleHi: 'क्षमता मानचित्र ईमानदारी से समस्या कथन की आवश्यकताओं की तुलना वास्तविक पुष्पक कार्यान्वयन से करता है। यह दर्शाता है कि कौन सी क्षमताएं पूर्णतः प्रदर्शित हैं (मूल्य सूचकांक, 9-चरणीय पाइपलाइन), कौन सी वास्तुशिल्प रूप से तैयार हैं, और कौन सी उत्पादन परिनियोजन की आवश्यकता रखती हैं।',
+    whyMattersEn: 'Presenting an honest capability map — rather than overclaiming — demonstrates engineering maturity and institutional readiness. Government evaluators value transparency about prototype boundaries.',
+    whyMattersHi: 'ईमानदार क्षमता मानचित्र — अति-दावों के बजाय — इंजीनियरिंग परिपक्वता और संस्थागत तत्परता प्रदर्शित करता है। सरकारी मूल्यांकनकर्ता प्रोटोटाइप सीमाओं के बारे में पारदर्शिता को महत्व देते हैं।',
+    actions: []
   }
 ];

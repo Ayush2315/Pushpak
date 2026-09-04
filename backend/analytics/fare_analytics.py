@@ -198,6 +198,11 @@ def get_airline_fare_comparison(route_code: Optional[str] = None) -> List[Dict[s
         fares = item["fares"]
         count = len(fares)
         avg_fare = round(sum(fares) / count, 2)
+        fares_sorted = sorted(fares)
+        if count % 2 == 1:
+            median_fare = round(fares_sorted[count // 2], 2)
+        else:
+            median_fare = round((fares_sorted[count // 2 - 1] + fares_sorted[count // 2]) / 2.0, 2)
         min_fare = round(min(fares), 2)
         max_fare = round(max(fares), 2)
         std_dev = _compute_std_dev(fares, avg_fare)
@@ -209,6 +214,7 @@ def get_airline_fare_comparison(route_code: Optional[str] = None) -> List[Dict[s
             "airline_name": name,
             "observation_count": count,
             "avg_fare": avg_fare,
+            "median_fare": median_fare,
             "min_fare": min_fare,
             "max_fare": max_fare,
             "std_dev": std_dev,

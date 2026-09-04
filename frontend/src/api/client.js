@@ -106,6 +106,85 @@ export const api = {
 
   getProvenance: () =>
     request('/api/v1/provenance'),
+
+  // 7. Live Data Acquisition Pipeline (M7)
+  getLiveStatus: () =>
+    request('/api/v1/live/status'),
+
+  fetchLiveData: (routeCode = 'DEL-BOM', advancePurchaseWindow = 7) =>
+    request('/api/v1/live/fetch', {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache'
+      },
+      body: JSON.stringify({
+        route_code: routeCode,
+        advance_purchase_window: advancePurchaseWindow,
+      }),
+    }),
+
+  getLiveHistory: (limit = 20) =>
+    request(`/api/v1/live/history?limit=${limit}`),
+
+  getLiveSources: () =>
+    request('/api/v1/live/sources'),
+
+  // 8. Government & Institutional API Layer (M7)
+  getGovernmentIndexLatest: () =>
+    request('/api/v1/government/index/latest'),
+
+  getGovernmentIndexSummary: () =>
+    request('/api/v1/government/index/summary'),
+
+  getGovernmentRoutes: () =>
+    request('/api/v1/government/routes'),
+
+  getGovernmentProvenance: () =>
+    request('/api/v1/government/provenance'),
+
+  getGovernmentDataStatus: () =>
+    request('/api/v1/government/data-status'),
+
+  // 9. National Corridor Explorer (M7)
+  getTop10Corridors: () =>
+    request('/api/v1/corridors/top10'),
+
+  getCorridorDetails: (routeCode) =>
+    request(`/api/v1/corridors/${encodeURIComponent(routeCode)}`),
+
+  // 10. Airfare Acquisition Lab (M8)
+  getAcquisitionSources: () =>
+    request('/api/v1/acquisition/sources'),
+
+  runAcquisitionPipeline: (sourceId = 'demo_airfare_connector', routeCode = 'DEL-BOM', advancePurchaseWindow = 15, departureDate = null) =>
+    request('/api/v1/acquisition/run', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        source_id: sourceId,
+        route_code: routeCode,
+        advance_purchase_window: advancePurchaseWindow,
+        departure_date: departureDate
+      }),
+    }),
+
+  getAcquisitionHistory: (limit = 20) =>
+    request(`/api/v1/acquisition/history?limit=${limit}`),
+
+  getAcquisitionObservations: (params = {}) => {
+    const q = new URLSearchParams(params).toString();
+    return request(q ? `/api/v1/acquisition/observations?${q}` : '/api/v1/acquisition/observations');
+  },
+
+  getAcquisitionScenarios: () =>
+    request('/api/v1/acquisition/scenarios'),
+
+  getAcquisitionCompare: (runId) =>
+    request(`/api/v1/acquisition/compare/${encodeURIComponent(runId)}`),
 };
 
 export default api;

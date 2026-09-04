@@ -81,6 +81,95 @@ SELECT
     SUM(CASE WHEN LOWER(stops) = 'zero' THEN 1 ELSE 0 END) AS non_stop_records
 FROM flight_registry
 GROUP BY route_code;
+
+CREATE TABLE IF NOT EXISTS live_acquisition_runs (
+    run_id TEXT PRIMARY KEY,
+    timestamp TEXT NOT NULL,
+    route_code TEXT NOT NULL,
+    advance_purchase_window INTEGER NOT NULL,
+    source_name TEXT NOT NULL,
+    source_type TEXT NOT NULL,
+    status TEXT NOT NULL,
+    records_retrieved INTEGER NOT NULL,
+    invalid_records INTEGER NOT NULL,
+    duplicates_removed INTEGER NOT NULL,
+    accepted_records INTEGER NOT NULL,
+    integrity_hash TEXT NOT NULL,
+    notes TEXT
+);
+
+CREATE TABLE IF NOT EXISTS live_fare_observations (
+    observation_id TEXT PRIMARY KEY,
+    run_id TEXT NOT NULL,
+    source_connector TEXT NOT NULL,
+    data_mode TEXT NOT NULL,
+    environment TEXT NOT NULL,
+    origin TEXT NOT NULL,
+    destination TEXT NOT NULL,
+    route_code TEXT NOT NULL,
+    carrier TEXT NOT NULL,
+    airline_name TEXT NOT NULL,
+    flight_number TEXT,
+    advance_purchase_window INTEGER NOT NULL,
+    fare_class TEXT NOT NULL,
+    base_fare REAL NOT NULL,
+    taxes REAL NOT NULL,
+    total_fare REAL NOT NULL,
+    observation_timestamp TEXT NOT NULL,
+    source TEXT NOT NULL,
+    source_hash TEXT NOT NULL,
+    confidence_score REAL NOT NULL,
+    FOREIGN KEY(run_id) REFERENCES live_acquisition_runs(run_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_live_runs_route ON live_acquisition_runs(route_code, timestamp);
+CREATE INDEX IF NOT EXISTS idx_live_obs_run ON live_fare_observations(run_id);
+
+CREATE TABLE IF NOT EXISTS airfare_acquisition_runs (
+    run_id TEXT PRIMARY KEY,
+    source_id TEXT NOT NULL,
+    source_name TEXT NOT NULL,
+    route_code TEXT NOT NULL,
+    advance_purchase_window INTEGER NOT NULL,
+    observation_timestamp TEXT NOT NULL,
+    records_retrieved INTEGER NOT NULL,
+    records_validated INTEGER NOT NULL,
+    duplicates_detected INTEGER NOT NULL,
+    records_accepted INTEGER NOT NULL,
+    records_rejected INTEGER NOT NULL,
+    validation_status TEXT NOT NULL,
+    provenance_hash TEXT NOT NULL,
+    notes TEXT
+);
+
+CREATE TABLE IF NOT EXISTS airfare_observations (
+    observation_id TEXT PRIMARY KEY,
+    run_id TEXT NOT NULL,
+    origin TEXT NOT NULL,
+    destination TEXT NOT NULL,
+    route_code TEXT NOT NULL,
+    carrier TEXT NOT NULL,
+    flight_identifier TEXT NOT NULL,
+    departure_date TEXT NOT NULL,
+    observation_timestamp TEXT NOT NULL,
+    advance_purchase_window INTEGER NOT NULL,
+    fare_class TEXT NOT NULL,
+    base_fare REAL NOT NULL,
+    taxes REAL NOT NULL,
+    total_fare REAL NOT NULL,
+    currency TEXT NOT NULL DEFAULT 'INR',
+    source TEXT NOT NULL,
+    source_type TEXT NOT NULL,
+    raw_record_identifier TEXT NOT NULL,
+    validation_status TEXT NOT NULL,
+    duplicate_status TEXT NOT NULL,
+    provenance_hash TEXT NOT NULL,
+    FOREIGN KEY(run_id) REFERENCES airfare_acquisition_runs(run_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_airfare_obs_run ON airfare_observations(run_id);
+CREATE INDEX IF NOT EXISTS idx_airfare_obs_route ON airfare_observations(route_code, departure_date);
+CREATE INDEX IF NOT EXISTS idx_airfare_obs_hash ON airfare_observations(provenance_hash);
 """
 
 def get_connection(db_path=DB_PATH) -> sqlite3.Connection:

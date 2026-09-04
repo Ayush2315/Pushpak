@@ -49,7 +49,7 @@ This formula avoids the arithmetic upward price bias inherent in simple averages
 ---
 
 ## 7. Data Mode Honesty Policy
-To guarantee 100% technical honesty for the Smart India Hackathon jury, simulated data is **never** presented as live market data. Every record displays one of four modes:
+To guarantee 100% technical honesty during institutional evaluation and regulatory auditing, simulated or demonstration data is **never** presented as live market data. Every record displays one of four modes:
 
 | Data Mode | Description | Example Environment |
 | :--- | :--- | :--- |

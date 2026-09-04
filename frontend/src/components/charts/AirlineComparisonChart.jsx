@@ -30,6 +30,8 @@ export default function AirlineComparisonChart({ data, routeAvgFare }) {
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       const item = payload[0].payload;
+      const diffVal = item.diff_from_route_avg ?? item.diff_from_market_avg ?? 0;
+      const rankVal = item.price_rank ?? (data.indexOf(item) + 1);
       return (
         <div style={{
           backgroundColor: '#ffffff',
@@ -45,11 +47,11 @@ export default function AirlineComparisonChart({ data, routeAvgFare }) {
           <p style={{ color: '#0f172a', margin: '2px 0' }}>
             <strong>Average Fare:</strong> ₹{item.avg_fare?.toLocaleString('en-IN')}
           </p>
-          <p style={{ color: item.diff_from_route_avg >= 0 ? '#ea580c' : '#059669', margin: '2px 0' }}>
-            <strong>Diff vs Route Mean:</strong> {item.diff_from_route_avg >= 0 ? '+' : ''}₹{item.diff_from_route_avg?.toFixed(2)}
+          <p style={{ color: diffVal >= 0 ? '#ea580c' : '#059669', margin: '2px 0' }}>
+            <strong>Diff vs Route Mean:</strong> {diffVal >= 0 ? '+' : ''}₹{Number(diffVal).toFixed(2)}
           </p>
           <p style={{ color: '#64748b', margin: '2px 0' }}>
-            <strong>Price Rank:</strong> #{item.price_rank} of {data.length}
+            <strong>Price Rank:</strong> #{rankVal} of {data.length}
           </p>
           <p style={{ color: '#94a3b8', fontSize: '11px', marginTop: '4px' }}>
             Observations: {item.observation_count}

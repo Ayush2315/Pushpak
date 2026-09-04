@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useWorkspace } from '../hooks/useWorkspace';
+import { useGuidedDemo } from '../context/GuidedDemoContext';
 import api from '../api/client';
 import SectionHeader from '../components/SectionHeader';
 import RouteSelector from '../components/RouteSelector';
@@ -22,6 +23,7 @@ import DisclaimerBanner from '../components/DisclaimerBanner';
 export default function Policy() {
   const { lang, t } = useLanguage();
   const { openTab } = useWorkspace();
+  const { isDemoActive, currentStep, nextStep } = useGuidedDemo();
   const isHi = lang === 'hi';
 
   const [loading, setLoading] = useState(true);
@@ -72,6 +74,55 @@ export default function Policy() {
         title={t('policy.title')}
         subtitle={t('policy.subtitle')}
       />
+
+      {/* Guided Demo Step 5 Banner */}
+      {isDemoActive && currentStep === 5 && (
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '1rem',
+          padding: '1rem 1.25rem',
+          backgroundColor: '#0f766e',
+          color: '#ffffff',
+          borderRadius: '10px',
+          marginBottom: '1.5rem',
+          boxShadow: '0 4px 12px rgba(15, 118, 110, 0.2)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <CheckCircle2 size={20} color="#5eead4" style={{ flexShrink: 0 }} />
+            <div>
+              <div style={{ fontWeight: '800', fontSize: '0.92rem' }}>
+                {isHi ? 'चरण 5: नीति निर्णय-समर्थन आसूचना एवं चेतावनी संकेत' : 'Step 5: Policy Decision-Support Intelligence & Surveillance Flags'}
+              </div>
+              <div style={{ fontSize: '0.78rem', color: '#ccfbf1' }}>
+                {isHi ? 'नियामक निगरानी प्राथमिकता, रूट-विशिष्ट फ्लैग और सीमांत विश्लेषण सक्रिय हैं। अंतिम चरण: संस्थागत एपीआई।' : 'Regulatory surveillance signals, heuristic price thresholds, and route dossiers active. Final stage: Institutional API.'}
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={nextStep}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '0.5rem 1.15rem',
+              backgroundColor: '#ffffff',
+              color: '#0f766e',
+              border: 'none',
+              borderRadius: '6px',
+              fontWeight: '800',
+              fontSize: '0.85rem',
+              cursor: 'pointer',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.15)'
+            }}
+          >
+            <span>{isHi ? 'संस्थागत एपीआई देखें →' : 'View Institutional API →'}</span>
+          </button>
+        </div>
+      )}
 
       {/* Advisory Heuristic Notice */}
       <div style={{

@@ -40,7 +40,11 @@ export default function BookingWindowChart({ data }) {
             <strong>Range:</strong> ₹{item.min_fare?.toLocaleString('en-IN')} - ₹{item.max_fare?.toLocaleString('en-IN')}
           </p>
           <p style={{ color: '#059669', margin: '2px 0' }}>
-            <strong>Yield Ratio:</strong> {item.yield_index}x of route average
+            {item.yield_index != null ? (
+              <><strong>Yield Ratio:</strong> {item.yield_index}x of route average</>
+            ) : (
+              <><strong>Fare Spread:</strong> ₹{(item.max_fare - item.min_fare)?.toLocaleString('en-IN')}</>
+            )}
           </p>
           <p style={{ color: '#94a3b8', fontSize: '11px', marginTop: '4px' }}>
             Sample Size: {item.observation_count} observations

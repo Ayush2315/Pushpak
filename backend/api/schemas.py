@@ -148,6 +148,7 @@ class AirlineFareComparisonItem(BaseModel):
     airline_name: str
     observation_count: int
     avg_fare: float
+    median_fare: Optional[float] = None
     min_fare: float
     max_fare: float
     std_dev: float

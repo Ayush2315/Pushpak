@@ -1,10 +1,10 @@
-# PUSHPAK: Jury Preparation & Defense FAQ
+# PUSHPAK: Institutional Evaluation & Technical Defense Guide
 
-This document prepares the team to handle difficult and technical jury questions during the Smart India Hackathon evaluation.
+This document prepares technical reviewers, evaluators, and demonstrators to address rigorous technical questions during institutional evaluation and technical audits.
 
 ---
 
-## 1. Questions Every Team Member Must Know
+## 1. Questions Every Demonstrator Must Know
 
 ### Q1: "Are you scraping airline websites live right now? Isn't that illegal?"
 - **Answer**: "No, sir/ma'am. We follow strict ethical data acquisition. In production, a government platform operates through authorized API feeds (e.g. GDS systems or official airline bilateral agreements). For our prototype, we designed a pluggable connector architecture that talks to permitted developer sandbox APIs, paired with a deterministic simulation engine. We never bypass CAPTCHAs, bot protections, or access controls."
@@ -57,10 +57,10 @@ This document prepares the team to handle difficult and technical jury questions
 - **Answer**: "We establish a base value of 100.00 at the T+45 advance purchase baseline. For each corridor, we compute the price relative $R_i = \text{Current Fare} / \text{Base Fare}$. We then compute a weighted composite index $I = \sum w_i R_i \times 100$, where weights $w_i$ reflect corridor traffic volume from our 50,000-record flight registry and sum strictly to 1.0000. PUSHPAK Headline covers all horizons ($T+1$ to $T+45$), while PUSHPAK Core excludes short-term walk-up volatility ($T+1, T+7$) to measure underlying capacity costs."
 
 ### Q15: "Why is the index transparent?"
-- **Answer**: "There are zero black-box formulas, zero neural networks, and zero hidden adjustments. Every route contribution, weight, baseline fare, and current average is exposed directly via the `/api/v1/index/methodology` and `/api/v1/index/summary` APIs. Any economist or judge can inspect raw database records and reproduce our exact index numbers with basic arithmetic."
+- **Answer**: "There are zero black-box formulas, zero neural networks, and zero hidden adjustments. Every route contribution, weight, baseline fare, and current average is exposed directly via the `/api/v1/index/methodology` and `/api/v1/index/summary` APIs. Any economist or institutional auditor can inspect raw database records and reproduce our exact index numbers with basic arithmetic."
 
 ### Q16: "How would this integrate with MoSPI methodology in production?"
-- **Answer**: "In production, MoSPI economists can replace our prototype volume weights with official Household Consumer Expenditure Survey (HCES) item weights. High-frequency automated scrapers or GDS feeds feed into our existing normalized schema, and our Core Index feeds directly into MoSPI's monthly CPI aggregation engine as an empirical transport price indicator."
+- **Answer**: "In production, MoSPI economists can replace our prototype volume weights with official Household Consumer Expenditure Survey (HCES) item weights. High-frequency automated API feeds or GDS feeds feed into our existing normalized schema, and our Core Index feeds directly into MoSPI's monthly CPI aggregation engine as an empirical transport price indicator."
 
 ---
 
@@ -68,10 +68,13 @@ This document prepares the team to handle difficult and technical jury questions
 
 ### Q17: "What are the limitations of what you have built today?"
 - **Answer**: "We are transparent about our current scope:
-  1. **Route Coverage**: We focused our prototype pipeline on India's top 3 trunk routes: `DEL-BOM`, `DEL-BLR`, and `BOM-BLR`.
+  1. **Route Coverage**: We focused our prototype pipeline on India's top trunk routes: `DEL-BOM`, `DEL-BLR`, and `BOM-BLR`.
   2. **Advance Windows**: We sample 5 representative booking windows ($T+1, T+7, T+15, T+30, T+45$) rather than all 365 calendar days.
   3. **Schedule Updates**: Flight schedules currently represent a static baseline rather than live ATC radar feeds.
   The architecture is modular, and expanding to all 100+ Indian routes requires simply updating the route configuration."
+
+### Q18: "Does PUSHPAK currently claim real airline portal scraping or a completed 30-day DGCA backtest?"
+- **Answer**: "No, absolutely not. We make no false claims. The demo shows our completed, fully functional data ingestion, validation, normalization, and deduplication architecture using controlled multi-cycle deterministic scenarios. We do not engage in evasive airline website scraping, nor do we fabricate synthetic historical data to claim a completed 30-day DGCA backtest. The backtesting framework is architecturally defined and ready to run organically as real daily observations accumulate."
 
 
 

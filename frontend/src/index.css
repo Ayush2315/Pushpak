@@ -1,45 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Surface & Backgrounds */
-  --bg-app: #f8fafc;
+  /* Surface & Backgrounds (Warm Institutional Indian Palette) */
+  --bg-app: #fcfaf7;
   --bg-surface: #ffffff;
-  --bg-subtle: #f1f5f9;
+  --bg-subtle: #f7f4ef;
   --bg-surface-elevated: #ffffff;
-  --bg-hover: #f8fafc;
+  --bg-hover: #faf7f2;
   
-  /* Text & Typography */
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
+  /* Text & Typography (Warm Deep Charcoal) */
+  --text-primary: #1c1917;
+  --text-secondary: #44403c;
+  --text-muted: #78716c;
   --text-inverse: #ffffff;
   
-  /* Institutional Accents (Restrained Government Palette) */
-  --gov-navy: #1e3a8a;
-  --gov-navy-light: #eff6ff;
-  --gov-navy-border: #bfdbfe;
+  /* Institutional Accents (Warm Saffron / Terracotta & Deep Charcoal) */
+  --gov-navy: #1e293b;
+  --gov-navy-light: #f8fafc;
+  --gov-navy-border: #cbd5e1;
+
+  --gov-amber: #c2410c;
+  --gov-amber-light: #fff7ed;
+  --gov-amber-border: #fed7aa;
 
   --gov-saffron: #d97706;
   --gov-saffron-light: #fffbeb;
   --gov-saffron-border: #fde68a;
 
-  --gov-green: #059669;
+  --gov-teal: #0f766e;
+  --gov-teal-light: #f0fdfa;
+  --gov-teal-border: #99f6e4;
+
+  --gov-green: #047857;
   --gov-green-light: #ecfdf5;
   --gov-green-border: #a7f3d0;
 
-  --gov-red: #dc2626;
+  --gov-red: #b91c1c;
   --gov-red-light: #fef2f2;
   --gov-red-border: #fecaca;
 
-  /* Neutral Borders & Dividers (Light & Subtle) */
-  --border-subtle: #e2e8f0;
-  --border-light: #edf2f7;
-  --border-focus: #94a3b8;
+  /* Neutral Borders & Dividers (Warm & Subtle) */
+  --border-subtle: #e7e5e4;
+  --border-light: #f5f5f4;
+  --border-focus: #a8a29e;
 
-  /* Subtle Soft Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
-  --shadow-card: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
+  /* Soft Ambient Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(28, 25, 23, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(28, 25, 23, 0.05), 0 2px 4px -2px rgba(28, 25, 23, 0.03);
+  --shadow-card: 0 1px 3px 0 rgba(28, 25, 23, 0.04), 0 1px 2px -1px rgba(28, 25, 23, 0.03);
 
   /* Layout dimensions */
   --sidebar-width: 260px;
@@ -103,7 +111,7 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%);
+  background: linear-gradient(135deg, #c2410c 0%, #ea580c 100%);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -111,7 +119,7 @@ body {
   font-weight: 700;
   font-size: 16px;
   letter-spacing: -0.5px;
-  box-shadow: 0 2px 4px rgba(30, 58, 138, 0.2);
+  box-shadow: 0 2px 5px rgba(194, 65, 12, 0.25);
 }
 
 .brand-text-container {
@@ -161,8 +169,8 @@ body {
 }
 
 .nav-item.active {
-  background-color: var(--gov-navy-light);
-  color: var(--gov-navy);
+  background-color: var(--gov-amber-light);
+  color: var(--gov-amber);
   font-weight: 600;
 }
 

@@ -8,7 +8,11 @@ import {
   GitFork, 
   FileCheck2, 
   Cpu, 
-  HelpCircle
+  HelpCircle,
+  Zap,
+  Navigation,
+  Database,
+  Terminal
 } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useWorkspace } from '../hooks/useWorkspace';
@@ -42,11 +46,15 @@ export default function Sidebar() {
 
   const navItems = [
     { to: '/', label: t('nav.dashboard'), icon: LayoutDashboard },
+    { to: '/acquisition-lab', label: t('nav.acquisitionLab') || (lang === 'hi' ? 'अधिग्रहण लैब' : 'Acquisition Lab'), icon: Database },
+    { to: '/live-lab', label: t('nav.liveLab') || (lang === 'hi' ? 'लाइव डेटा लैब' : 'Live Data Lab'), icon: Zap },
     { to: '/price-index', label: t('nav.priceIndex'), icon: TrendingUp },
+    { to: '/corridors', label: t('nav.corridors') || (lang === 'hi' ? 'राष्ट्रीय गलियारे' : 'National Corridors'), icon: Navigation },
     { to: '/intelligence', label: t('nav.intelligence'), icon: Compass },
     { to: '/policy', label: t('nav.policy'), icon: ShieldAlert },
     { to: '/network', label: t('nav.network'), icon: GitFork },
     { to: '/transparency', label: t('nav.transparency'), icon: FileCheck2 },
+    { to: '/institutional-api', label: t('nav.institutionalApi') || (lang === 'hi' ? 'संस्थागत एपीआई' : 'Institutional API'), icon: Terminal },
     { to: '/methodology', label: t('nav.methodology'), icon: Cpu },
   ];
 

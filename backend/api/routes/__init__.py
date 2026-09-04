@@ -8,6 +8,10 @@ from backend.api.routes.provenance import router as provenance_router
 from backend.api.routes.intelligence import router as intelligence_router
 from backend.api.routes.policy import router as policy_router
 from backend.api.routes.index import router as index_router
+from backend.api.routes.live import router as live_router
+from backend.api.routes.government import router as government_router
+from backend.api.routes.corridors import router as corridors_router
+from backend.api.routes.acquisition import router as acquisition_router
 
 api_v1_router = APIRouter(prefix="/api/v1")
 
@@ -21,6 +25,10 @@ api_v1_router.include_router(provenance_router)
 api_v1_router.include_router(intelligence_router)
 api_v1_router.include_router(policy_router)
 api_v1_router.include_router(index_router)
+api_v1_router.include_router(live_router)
+api_v1_router.include_router(government_router)
+api_v1_router.include_router(corridors_router)
+api_v1_router.include_router(acquisition_router)
 
 __all__ = ["api_v1_router"]
 

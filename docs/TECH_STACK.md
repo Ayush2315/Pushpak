@@ -35,7 +35,7 @@ This document provides a comprehensive technical breakdown of every technology i
 ## 3. SQLite with WAL Mode
 - **Category**: Relational Database Engine
 - **Why Selected**: Zero-configuration, zero-dependency, serverless embedded database engine stored in a single cross-platform file.
-- **Problem It Solves**: Eliminates database daemon setups (PostgreSQL/MySQL) for the hackathon prototype while delivering microsecond read latencies.
+- **Problem It Solves**: Eliminates database daemon setups (PostgreSQL/MySQL) for the portable institutional prototype while delivering microsecond read latencies.
 - **Where Used in PUSHPAK**: `backend/core/database.py`, storing `backend/data/pushpak.db`.
 - **How It Interacts**: Receives batch inserts from the ingestion pipeline; provides indexed queries for analytics calculations and API endpoints.
 - **Key Concepts to Understand**: 

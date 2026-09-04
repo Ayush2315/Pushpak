@@ -6,11 +6,15 @@ export const translations = {
     taglineFull: "A transparent analytical framework for monitoring airfare dynamics and supporting CPI augmentation research.",
     nav: {
       dashboard: "Dashboard",
+      liveLab: "Live Data Lab",
       priceIndex: "Price Index",
+      corridors: "National Corridors",
       intelligence: "Airfare Intelligence",
       policy: "Policy Intelligence",
       network: "Route Network",
       transparency: "Data Transparency",
+      acquisitionLab: "Acquisition Lab",
+      institutionalApi: "Institutional API",
       methodology: "Methodology",
       faq: "FAQ & Knowledge Center"
     },
@@ -23,6 +27,30 @@ export const translations = {
       backToDashboard: "Return to Dashboard",
       activeWorkspaces: "Active Analysis Workspaces",
       noExtraTabs: "Click any metric, corridor, or policy flag across the platform to open an in-depth analytical workspace tab."
+    },
+    liveLab: {
+      title: "Live Data Lab",
+      subtitle: "Demonstrates PUSHPAK's live acquisition, validation, cleaning, deduplication, provenance, and analytical ingestion pipeline.",
+      fetchFareBtn: "FETCH LATEST FARE DATA",
+      fetching: "Executing 7-Stage Pipeline...",
+      recordsRetrieved: "Records Retrieved",
+      invalidRecords: "Invalid Records",
+      duplicatesRemoved: "Duplicates Removed",
+      acceptedObservations: "Accepted Observations",
+      pipelineTitle: "7-Stage Acquisition & Ingestion Pipeline",
+      provenanceTitle: "Cryptographic Provenance Audit",
+      recentRunsTitle: "Recent Acquisition Runs & Telemetry Logs",
+      sourceBadge: "Open Aviation Telemetry Source",
+      disclaimer: "Ethical acquisition pipeline with deterministic SHA-256 provenance hash. Demonstrates live aviation data ingestion without fabricating live fares."
+    },
+    corridors: {
+      title: "National Corridor Explorer",
+      subtitle: "Broader domestic route exploration and capacity tracking. Separate from the 3-route representative basket used for the PUSHPAK Price Index.",
+      top10Title: "Top 10 National Aviation Corridors",
+      filterAll: "All Top 10",
+      filterBasket: "Representative Basket",
+      filterExplorer: "Explorer Only",
+      basketSeparationNotice: "The PUSHPAK Headline and Core Price Indices are strictly derived from the 3 representative trunk routes (DEL-BOM, DEL-BLR, BOM-BLR) using historical passenger volume weighting. The additional 7 corridors demonstrate national connectivity without altering the official index calculation."
     },
     status: {
       connected: "System Operational",
@@ -58,25 +86,25 @@ export const translations = {
     },
     dashboard: {
       title: "Civil Aviation Price Intelligence",
-      subtitle: "A transparent analytical framework for monitoring domestic airfare dynamics and supporting CPI augmentation research.",
+      subtitle: "A transparent analytical platform for monitoring domestic airfare dynamics and advancing CPI transport augmentation research.",
       headlineIndex: "PUSHPAK Headline Index",
-      headlineSub: "All horizons (T+1 to T+45)",
+      headlineSub: "All booking windows (T+1 to T+45)",
       coreIndex: "PUSHPAK Core Index",
       coreSub: "Structural capacity (T+15 to T+45)",
       surgeSpread: "Walk-Up Surge Spread",
       surgeSpreadSub: "Headline vs Core premium",
       policyAttention: "Active Policy Signals",
-      policyAttentionSub: "Corridors requiring monitoring",
+      policyAttentionSub: "Corridors under monitoring",
       chartTitle: "PUSHPAK Headline vs Core Index Comparison",
-      chartSubtitle: "Quantifying the gap between total market dynamic pricing and underlying structural capacity fares (Base = 100.00)",
+      chartSubtitle: "Quantifying aggregate dynamic pricing relative to baseline capacity pricing (Base = 100.00)",
       networkSummaryTitle: "Network Flight Infrastructure Overview",
       activeFlagsTitle: "Active Corridor Policy Alerts",
-      clickToExplore: "Click to explore analytical breakdown →"
+      clickToExplore: "Click any corridor or metric to view in-depth analytical breakdown →"
     },
     priceIndex: {
-      title: "PUSHPAK Airfare Price Index Suite",
-      subtitle: "A transparent, route-weighted price-relative framework engineered for CPI transport subgroup augmentation.",
-      headlineCard: "Headline Index (All Horizons)",
+      title: "PUSHPAK Airfare Price Index",
+      subtitle: "A transparent, route-weighted price relative framework designed to support CPI transport sub-index research.",
+      headlineCard: "Headline Index (Composite)",
       coreCard: "Core Index (Structural)",
       spreadCard: "Walk-Up Surge Premium",
       routeContributionsTitle: "Representative Route Basket Contributions",
@@ -84,46 +112,47 @@ export const translations = {
     },
     intelligence: {
       title: "Airfare Route Intelligence Explorer",
-      subtitle: "Empirical pricing distributions, booking window yield curves, and deterministic market analytics.",
-      routeSummaryTitle: "Route Statistical Overview",
-      bookingWindowTitle: "Advance Booking Window Yield Curve",
-      airlineCompTitle: "Operating Airline Price Comparison",
+      subtitle: "Empirical price distributions, booking window yield curves, and deterministic market analytics across representative corridors.",
+      routeSummaryTitle: "Route Statistics Overview",
+      bookingWindowTitle: "Advance Purchase Booking Window Yield Curves",
+      airlineCompTitle: "Operating Airline Fare Dispersion",
       insightsTitle: "Deterministic Statistical Insights"
     },
     policy: {
       title: "Policy Decision-Support Intelligence",
-      subtitle: "Deterministic supervisory indicators for identifying airfare corridors exhibiting volatility, scarcity, or surge premiums.",
+      subtitle: "Analytical flags and priority heuristics designed to identify corridors exhibiting volatility, scarcity, or excessive surge premiums.",
       networkOverviewTitle: "National Corridor Priority Distribution",
       routePolicyTitle: "Route Priority Assessment",
-      flagsTitle: "Network Policy Attention Flags",
-      disclaimer: "Advisory Heuristic Notice: These priority classifications and flags are deterministic analytical decision-support signals. They do not constitute official statutory directives or regulatory interventions."
+      flagsTitle: "Network Policy Monitoring Alerts",
+      disclaimer: "Advisory Notice: These priority classifications and alerts are analytical decision-support signals. They do not constitute formal regulatory determinations."
     },
     network: {
-      title: "Domestic Air Route Network & Registry",
-      subtitle: "High-density trunk corridors and observed flight registry records across Indian civil aviation.",
+      title: "Domestic Flight Network & Registry",
+      subtitle: "High-density trunk corridors and verified flight observations across the Indian civil aviation ecosystem.",
       routesTableTitle: "Indexed Route Corridors",
-      airlinePresenceTitle: "Operating Airline Dataset Presence"
+      airlinePresenceTitle: "Airline Dataset Presence"
     },
     transparency: {
       title: "Data Provenance & Governance Transparency",
-      subtitle: "Comprehensive audit breakdown of underlying observations, cryptographic provenance hashes, and simulation labeling.",
-      breakdownTitle: "Observation Audit Breakdown by Mode & Connector",
-      honestyTitle: "Data Honesty & Evaluation Boundary Principles"
+      subtitle: "Comprehensive audit trail of underlying observations, cryptographic source hashes, and simulation labelling.",
+      breakdownTitle: "Observation Breakdown by Mode & Connector",
+      honestyTitle: "Data Honesty & Evaluation Principles"
     },
     methodology: {
       title: "PUSHPAK Analytical Methodology & Pipeline",
-      subtitle: "Formal mathematical specification, Laspeyres-type aggregation, and architectural pipeline overview.",
-      pipelineTitle: "End-to-End Civil Aviation Intelligence Pipeline",
+      subtitle: "Formal mathematical specification, Laspeyres-type aggregation, and architectural overview.",
+      pipelineTitle: "Civil Aviation Intelligence Pipeline",
       mathTitle: "Mathematical Index Formulas & Normalization",
       limitationsTitle: "Current Prototype Scope & Production Roadmap"
     },
     faq: {
-      title: "FAQ & Civil Aviation Knowledge Center",
-      subtitle: "Comprehensive guide to PUSHPAK index formulas, volatility statistics, policy heuristics, and CPI augmentation methodology.",
-      searchPrompt: "Search by concept (e.g. Core Index, T+1, Volatility, Laspeyres, Sigma, Provenance)...",
+      title: "Knowledge Center & Analytical FAQ",
+      subtitle: "Comprehensive documentation of PUSHPAK index formulas, volatility statistics, policy heuristics, and CPI augmentation methodology.",
+      searchPrompt: "Search concepts (e.g., Core Index, T+1, Volatility, Laspeyres, Sigma, Provenance)...",
       categories: {
         all: "All Topics",
         basics: "PUSHPAK Basics",
+        liveData: "Live Data & Acquisition",
         priceIndex: "Price Index",
         fareIntelligence: "Fare Intelligence",
         policyIntelligence: "Policy Intelligence",
@@ -140,11 +169,15 @@ export const translations = {
     taglineFull: "हवाई किराए की गतिशीलता की निगरानी और सीपीआई संवर्धन अनुसंधान का पारदर्शी विश्लेषणात्मक ढांचा।",
     nav: {
       dashboard: "डैशबोर्ड",
+      liveLab: "लाइव डेटा लैब",
       priceIndex: "मूल्य सूचकांक",
+      corridors: "राष्ट्रीय गलियारे",
       intelligence: "किराया आसूचना",
       policy: "नीति आसूचना",
       network: "मार्ग संजाल",
       transparency: "डेटा पारदर्शिता",
+      acquisitionLab: "अधिग्रहण लैब",
+      institutionalApi: "संस्थागत एपीआई",
       methodology: "कार्यप्रणाली",
       faq: "ज्ञान केंद्र एवं प्रश्नोत्तर"
     },
@@ -157,6 +190,30 @@ export const translations = {
       backToDashboard: "डैशबोर्ड पर लौटें",
       activeWorkspaces: "सक्रिय विश्लेषण कार्यक्षेत्र",
       noExtraTabs: "गहन विश्लेषण कार्यक्षेत्र खोलने के लिए किसी भी मीट्रिक, गलियारे या नीति संकेत पर क्लिक करें।"
+    },
+    liveLab: {
+      title: "लाइव डेटा लैब",
+      subtitle: "पुष्पक के लाइव अधिग्रहण, 7-चरणीय सत्यापन, डेटा सफाई, डुप्लिकेट निष्कासन, क्रिप्टोग्राफ़िक उद्गम एवं विश्लेषणात्मक अंतर्ग्रहण पाइपलाइन का प्रदर्शन।",
+      fetchFareBtn: "नवीनतम किराया डेटा प्राप्त करें",
+      fetching: "7-चरणीय पाइपलाइन निष्पादित हो रही है...",
+      recordsRetrieved: "प्राप्त रिकॉर्ड",
+      invalidRecords: "अमान्य रिकॉर्ड",
+      duplicatesRemoved: "हटाए गए डुप्लिकेट",
+      acceptedObservations: "स्वीकृत प्रेक्षण",
+      pipelineTitle: "7-चरणीय अधिग्रहण एवं अंतर्ग्रहण पाइपलाइन",
+      provenanceTitle: "क्रिप्टोग्राफिक उद्गम ऑडिट",
+      recentRunsTitle: "हालिया अधिग्रहण रन एवं टेलीमेट्री लॉग्स",
+      sourceBadge: "खुला विमानन टेलीमेट्री स्रोत",
+      disclaimer: "निर्धारक SHA-256 उद्गम हैश के साथ नैतिक अधिग्रहण पाइपलाइन। बिना किसी कृत्रिम किराए के वास्तविक विमानन डेटा अंतर्ग्रहण का प्रदर्शन करता है।"
+    },
+    corridors: {
+      title: "राष्ट्रीय गलियारा एक्सप्लोरर",
+      subtitle: "व्यापक घरेलू मार्ग अन्वेषण एवं क्षमता ट्रैकिंग। यह पुष्पक मूल्य सूचकांक में प्रयुक्त 3-मार्गीय प्रतिनिधि बास्केट से पूर्णतः पृथक है।",
+      top10Title: "शीर्ष 10 राष्ट्रीय विमानन गलियारे",
+      filterAll: "सभी शीर्ष 10",
+      filterBasket: "प्रतिनिधि बास्केट",
+      filterExplorer: "केवल एक्सप्लोरर",
+      basketSeparationNotice: "पुष्पक हेडलाइन और कोर मूल्य सूचकांक केवल 3 प्रतिनिधि ट्रंक मार्गों (DEL-BOM, DEL-BLR, BOM-BLR) के ऐतिहासिक यात्री मात्रा भार पर आधारित हैं। अतिरिक्त 7 गलियारे आधिकारिक सूचकांक गणना को प्रभावित किए बिना राष्ट्रीय कनेक्टिविटी प्रदर्शित करते हैं।"
     },
     status: {
       connected: "प्रणाली सक्रिय",
@@ -258,6 +315,7 @@ export const translations = {
       categories: {
         all: "सभी विषय",
         basics: "पुष्पक मूल बातें",
+        liveData: "लाइव डेटा एवं अधिग्रहण",
         priceIndex: "मूल्य सूचकांक",
         fareIntelligence: "किराया आसूचना",
         policyIntelligence: "नीति आसूचना",

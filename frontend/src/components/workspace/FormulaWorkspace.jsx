@@ -204,6 +204,28 @@ export default function FormulaWorkspace({ data }) {
                 : 'Headline Index encompasses all 5 booking horizons (T+1, T+7, T+15, T+30, T+45), capturing last-minute scarcity surges. Core Index removes volatile near-term T+1 and T+7 windows, focusing strictly on T+15, T+30, and T+45 to measure underlying structural capacity pricing.'}
             </p>
           </div>
+
+          <div style={{ background: '#fffbeb', padding: '0.85rem 1rem', borderRadius: '6px', border: '1px solid #fde68a' }}>
+            <div style={{ fontSize: '0.95rem', fontWeight: '700', color: '#b45309' }}>
+              {isHi ? 'T+1 एवं T+7 वॉक-अप अस्थिरता का कारण' : 'Why T+1 and T+7 Create Walk-Up Volatility'}
+            </div>
+            <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.82rem', color: '#78350f', lineHeight: '1.5' }}>
+              {isHi
+                ? 'प्रस्थान के 24-48 घंटों के भीतर, एयरलाइन रेवेन्यू एल्गोरिदम बची हुई सीटों पर आक्रामक गतिशील मूल्य निर्धारण लागू करते हैं। जब मांग अधिक होती है तो अंतिम समय की कीमतें बेसलाइन से 100-200% ऊपर जा सकती हैं, जिससे क्षणिक मुद्रास्फीति जैसा भ्रम पैदा होता है।'
+                : 'Within 24 to 48 hours of flight departure, carrier revenue management algorithms restrict discounted booking classes and apply scarcity surcharges. These walk-up spikes reflect emergency price inelasticity rather than structural transport cost inflation.'}
+            </p>
+          </div>
+
+          <div style={{ background: '#f0fdf4', padding: '0.85rem 1rem', borderRadius: '6px', border: '1px solid #bbf7d0' }}>
+            <div style={{ fontSize: '0.95rem', fontWeight: '700', color: '#15803d' }}>
+              {isHi ? 'नियत गणित बनाम ब्लैक-बॉक्स AI/ML' : 'Deterministic Engine vs Black-Box AI/ML'}
+            </div>
+            <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.82rem', color: '#14532d', lineHeight: '1.5' }}>
+              {isHi
+                ? 'पुष्पक में कोई अप्रमाणित मशीन लर्निंग या न्यूरल नेटवर्क नहीं है। प्रत्येक गणना अपरिवर्तनीय गणितीय नियमों (लास्पेरेस योग, मानक विचलन) पर आधारित है और डेटाबेस से 100% पुनरुत्पादित की जा सकती है, जो केंद्रीय बैंकों और सांख्यिकी लेखा परीक्षा हेतु आवश्यक है।'
+                : 'Unlike opaque neural networks or generative LLMs, PUSHPAK relies purely on transparent, deterministic Laspeyres summation and fixed weights. Every output is 100% reproducible by any independent auditor directly from stored observations.'}
+            </p>
+          </div>
         </div>
       </div>
 

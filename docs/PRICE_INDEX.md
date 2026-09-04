@@ -1,7 +1,7 @@
 # Project PUSHPAK — Airfare Price Index Engine Architecture & Methodology
 
 ## 1. Executive Summary & Product Alignment
-The core mission defined in the Smart India Hackathon (SIH) problem statement and platform presentation is:
+The core mission defined in the civil aviation price intelligence problem statement is:
 > **"Development of a Real-time Airfare Price Index for India for CPI augmentation."**
 
 Project PUSHPAK achieves this by establishing a high-frequency, transparent, and auditable airfare price index architecture modeled after international statistical standards (ILO / IMF Consumer Price Index Manual). It provides government economists and policymakers at the **Ministry of Statistics and Programme Implementation (MoSPI)** and the **Directorate General of Civil Aviation (DGCA)** with an empirical instrument to track civil aviation consumer price movements.
@@ -130,7 +130,7 @@ All endpoints are mounted under `/api/v1/index`:
 
 > [!IMPORTANT]
 > **Statutory Non-Government Notice**:
-> The PUSHPAK Price Index Suite is an **empirical prototype analytical index** designed for academic evaluation, hackathon demonstration, and methodology prototyping.
+> The PUSHPAK Price Index Suite is an **empirical prototype analytical index** designed for official evaluation, institutional technical demonstration, and methodology prototyping.
 > - It is **NOT an official Government of India Consumer Price Index (CPI)** series.
 > - It is **NOT published or certified by MoSPI or DGCA**.
 > - Weights reflect dataset volume rather than official MoSPI Household Consumer Expenditure Surveys (HCES).

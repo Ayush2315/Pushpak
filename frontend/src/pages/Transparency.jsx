@@ -63,7 +63,7 @@ export default function Transparency() {
             <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
               Unlike black-box commercial tools that claim to display "real-time live market airfares" based on synthetic or scraped approximations, 
               <strong> Project PUSHPAK strictly labels and audits every single observation</strong>. 
-              In compliance with Ministry of Statistics (MoSPI) and Smart India Hackathon integrity guidelines:
+              In compliance with Ministry of Statistics (MoSPI) data integrity guidelines and institutional best practices:
             </p>
             <ul style={{ marginTop: '8px', paddingLeft: '20px', fontSize: '13px', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
               <li><strong>Zero Fabricated Live Feeds:</strong> Current prototype observations are explicitly tagged as <code>data_mode="demo_simulation"</code> and <code>environment="offline"</code>.</li>

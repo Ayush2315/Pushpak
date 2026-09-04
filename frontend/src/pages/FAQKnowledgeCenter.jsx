@@ -117,6 +117,33 @@ export default function FAQKnowledgeCenter() {
         });
         break;
 
+      case 'corridor':
+        openContextualWindow({
+          id: `corridor-${actionObj?.routeCode || 'DEL-BOM'}`,
+          title: `Delhi — Mumbai (DEL-BOM)`,
+          titleHi: `दिल्ली — मुंबई (DEL-BOM)`,
+          type: 'corridor-explorer',
+          data: {
+            rank: 1,
+            route_code: 'DEL-BOM',
+            source_city: 'Delhi',
+            destination_city: 'Mumbai',
+            origin_airport: 'Indira Gandhi International Airport (DEL)',
+            destination_airport: 'Chhatrapati Shivaji Maharaj International Airport (BOM)',
+            distance_km: 1148,
+            typical_duration_str: '2h 10m',
+            observed_carriers: ['IndiGo', 'Air India', 'Vistara', 'Akasa Air'],
+            annual_passenger_volume_est: '7.3M',
+            daily_scheduled_flights_est: '~65 daily direct flights',
+            is_in_representative_basket: true,
+            basket_status: 'INCLUDED_IN_REPRESENTATIVE_BASKET',
+            basket_weight_pct: 42.5,
+            network_importance: 'The busiest and highest-revenue domestic air corridor in India.',
+            pricing_characteristics: 'High dynamic pricing dispersion with intense competition between low-cost and full-service carriers.'
+          }
+        });
+        break;
+
       default:
         console.warn('Unknown knowledge action:', actionKey);
     }

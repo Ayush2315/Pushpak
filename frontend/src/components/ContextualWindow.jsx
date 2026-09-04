@@ -11,7 +11,8 @@ import {
   ArrowRight,
   Info,
   ExternalLink,
-  BookOpen
+  BookOpen,
+  CheckCircle2
 } from 'lucide-react';
 import { useWorkspace } from '../hooks/useWorkspace';
 import { useLanguage } from '../hooks/useLanguage';
@@ -24,6 +25,8 @@ import SurgeSpreadWorkspace from './workspace/SurgeSpreadWorkspace';
 import RouteWorkspace from './workspace/RouteWorkspace';
 import PolicyFlagWorkspace from './workspace/PolicyFlagWorkspace';
 import FormulaWorkspace from './workspace/FormulaWorkspace';
+import CorridorExplorerWorkspace from './workspace/CorridorExplorerWorkspace';
+import AcquisitionConceptWorkspace from './workspace/AcquisitionConceptWorkspace';
 
 export default function ContextualWindow() {
   const { activeWindow, closeContextualWindow } = useWorkspace();
@@ -47,9 +50,11 @@ export default function ContextualWindow() {
       case 'core': return Layers;
       case 'spread':
       case 'surge-spread': return Flame;
-      case 'route': return Plane;
+      case 'route':
+      case 'corridor-explorer': return Plane;
       case 'policy-flag': return ShieldAlert;
       case 'formula': return Calculator;
+      case 'acquisition-concept': return CheckCircle2;
       default: return HelpCircle;
     }
   };
@@ -68,10 +73,14 @@ export default function ContextualWindow() {
         return <SurgeSpreadWorkspace />;
       case 'route':
         return <RouteWorkspace routeCode={activeWindow.data?.route_id || activeWindow.routeCode || 'DEL-BOM'} />;
+      case 'corridor-explorer':
+        return <CorridorExplorerWorkspace data={activeWindow.data} />;
       case 'policy-flag':
         return <PolicyFlagWorkspace flagData={activeWindow.data || activeWindow.flagData} />;
       case 'formula':
         return <FormulaWorkspace data={activeWindow.data} />;
+      case 'acquisition-concept':
+        return <AcquisitionConceptWorkspace conceptId={activeWindow.id || activeWindow.data?.conceptId} data={activeWindow.data} />;
       default:
         // Generic explanatory fallback panel
         return (

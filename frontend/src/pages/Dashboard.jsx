@@ -10,11 +10,13 @@ import {
   ArrowRight,
   ExternalLink,
   HelpCircle,
-  Calculator
+  Calculator,
+  Play
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../hooks/useLanguage';
 import { useWorkspace } from '../hooks/useWorkspace';
+import { useGuidedDemo } from '../context/GuidedDemoContext';
 import api from '../api/client';
 import SectionHeader from '../components/SectionHeader';
 import MetricCard from '../components/MetricCard';
@@ -22,10 +24,12 @@ import IndexComparisonChart from '../components/charts/IndexComparisonChart';
 import LoadingState from '../components/LoadingState';
 import ErrorState from '../components/ErrorState';
 import DisclaimerBanner from '../components/DisclaimerBanner';
+import DataPipelineFlow from '../components/DataPipelineFlow';
 
 export default function Dashboard() {
   const { lang, t } = useLanguage();
   const { openContextualWindow } = useWorkspace();
+  const { startDemo } = useGuidedDemo();
   const navigate = useNavigate();
   const isHi = lang === 'hi';
 
@@ -79,12 +83,58 @@ export default function Dashboard() {
   const spreadPct = indexSummary?.surge_spread_pct ?? 18.46;
 
   return (
-    <div className="page-container">
-      {/* Spacious Upper Header */}
-      <SectionHeader 
-        title={t('dashboard.title')}
-        subtitle={t('dashboard.subtitle')}
-      />
+    <div className="page-container" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      {/* Spacious Upper Header with Guided Demo Action */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '1rem',
+        paddingBottom: '0.5rem',
+        borderBottom: '1px solid var(--border-subtle)'
+      }}>
+        <div>
+          <SectionHeader 
+            title={t('dashboard.title')}
+            subtitle={t('dashboard.subtitle')}
+          />
+        </div>
+
+        <button
+          type="button"
+          onClick={startDemo}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '0.75rem 1.4rem',
+            backgroundColor: '#0f766e',
+            color: '#ffffff',
+            border: 'none',
+            borderRadius: '8px',
+            fontSize: '0.92rem',
+            fontWeight: '700',
+            cursor: 'pointer',
+            boxShadow: '0 4px 14px rgba(15, 118, 110, 0.3)',
+            transition: 'all 0.15s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#115e59';
+            e.currentTarget.style.transform = 'translateY(-1px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#0f766e';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+        >
+          <Play size={16} fill="#ffffff" />
+          <span>{isHi ? 'संपूर्ण प्रणाली प्रदर्शन चलाएँ' : 'Run End-to-End Demonstration'}</span>
+        </button>
+      </div>
+
+      {/* PUSHPAK Data-to-Decision Pipeline Visual Flow */}
+      <DataPipelineFlow />
 
       {/* Top Level Key Indicators - Clickable to Open the Single Contextual Information Window */}
       <div className="metrics-grid">

@@ -8,10 +8,12 @@ import {
   FileSpreadsheet,
   Calculator,
   ArrowRight,
-  ExternalLink
+  ExternalLink,
+  CheckCircle2
 } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useWorkspace } from '../hooks/useWorkspace';
+import { useGuidedDemo } from '../context/GuidedDemoContext';
 import api from '../api/client';
 import SectionHeader from '../components/SectionHeader';
 import MetricCard from '../components/MetricCard';
@@ -23,6 +25,7 @@ import DisclaimerBanner from '../components/DisclaimerBanner';
 export default function PriceIndex() {
   const { lang, t } = useLanguage();
   const { openTab } = useWorkspace();
+  const { isDemoActive, currentStep, nextStep } = useGuidedDemo();
   const isHi = lang === 'hi';
 
   const [loading, setLoading] = useState(true);
@@ -101,6 +104,55 @@ export default function PriceIndex() {
           </div>
         }
       />
+
+      {/* Guided Demo Step 4 Banner */}
+      {isDemoActive && currentStep === 4 && (
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '1rem',
+          padding: '1rem 1.25rem',
+          backgroundColor: '#0f766e',
+          color: '#ffffff',
+          borderRadius: '10px',
+          marginBottom: '1.5rem',
+          boxShadow: '0 4px 12px rgba(15, 118, 110, 0.2)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <CheckCircle2 size={20} color="#5eead4" style={{ flexShrink: 0 }} />
+            <div>
+              <div style={{ fontWeight: '800', fontSize: '0.92rem' }}>
+                {isHi ? 'चरण 4: वायु किराया मूल्य सूचकांक एवं सर्ज स्प्रेड' : 'Step 4: Airfare Price Index & Surge Spread Construction'}
+              </div>
+              <div style={{ fontSize: '0.78rem', color: '#ccfbf1' }}>
+                {isHi ? 'हेडलाइन सूचकांक (133.79), कोर सूचकांक (112.94) और सर्ज स्प्रेड (+20.85 अंक) का अवलोकन किया गया। अब नीति आसूचना की ओर बढ़ें।' : 'Laspeyres/Jevons price index relatives and dynamic pricing surge spread inspected. Proceed to Policy Intelligence.'}
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={nextStep}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '0.5rem 1.15rem',
+              backgroundColor: '#ffffff',
+              color: '#0f766e',
+              border: 'none',
+              borderRadius: '6px',
+              fontWeight: '800',
+              fontSize: '0.85rem',
+              cursor: 'pointer',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.15)'
+            }}
+          >
+            <span>{isHi ? 'नीति आसूचना पर आगे बढ़ें →' : 'View Policy Intelligence →'}</span>
+          </button>
+        </div>
+      )}
 
       {/* Top 3 Core Index Cards - Clickable to open Workspaces */}
       <div className="metrics-grid">
