@@ -106,7 +106,7 @@ def test_ingestion_and_sqlite_route_view():
     """
     Confirms registry ingestion populates flight_registry table and v_route_network view.
     """
-    summary = ingest_flight_registry(force_fallback=True, reset_registry=True)
+    summary = ingest_flight_registry(force_fallback=True, reset_registry=False)
     assert summary["status"] == "SUCCESS"
     assert summary["records_ingested_this_run"] > 30
     assert summary["distinct_routes_indexed"] >= 5
@@ -115,7 +115,6 @@ def test_ingestion_and_sqlite_route_view():
     conn = get_connection()
     cursor = conn.cursor()
     row = cursor.execute("SELECT * FROM v_route_network WHERE route_code = 'DEL-BOM'").fetchone()
-    conn.close()
 
     assert row is not None
     assert row["origin_code"] == "DEL"
@@ -125,10 +124,25 @@ def test_ingestion_and_sqlite_route_view():
     assert row["active_airlines_count"] >= 3
     assert row["avg_duration_hours"] > 0
 
+    # If real PDF records are present, clean up the temporary seed_fallback records
+    # so flight_registry maintains a pristine historical dataset of exactly 50,000 records.
+    has_pdf_data = cursor.execute(
+        "SELECT COUNT(*) FROM flight_registry WHERE source_type = 'pdf_dataset';"
+    ).fetchone()[0] > 0
+    if has_pdf_data:
+        cursor.execute("DELETE FROM flight_registry WHERE source_type = 'seed_fallback';")
+        conn.commit()
+    conn.close()
+
 def test_network_analytics():
     """Confirms network analytics functions compute correct shares and distributions."""
-    # Ensure database is populated
-    ingest_flight_registry(force_fallback=True)
+    # Ensure database has registry records
+    conn = get_connection()
+    cursor = conn.cursor()
+    reg_count = cursor.execute("SELECT COUNT(*) FROM flight_registry;").fetchone()[0]
+    conn.close()
+    if reg_count == 0:
+        ingest_flight_registry(force_fallback=True)
 
     # Route summary
     routes = get_route_network_summary()
@@ -141,6 +155,7 @@ def test_network_analytics():
     assert len(carriers) >= 3
     total_share = sum(c["share_percentage"] for c in carriers)
     assert 99.0 <= total_share <= 101.0  # Floating point sum near 100%
+
 
     # Departure slots distribution
     slots = get_departure_time_distribution("DEL-BOM")
